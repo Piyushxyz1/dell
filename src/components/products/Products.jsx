@@ -668,11 +668,11 @@ const Products = () => {
             }}
             viewport={{
               once: true,
-              amount: 0.4,
+              amount: 0.10,
             }}
             transition={{
               duration: 1.35,
-              delay: 0.6,
+              delay: 0.4,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
