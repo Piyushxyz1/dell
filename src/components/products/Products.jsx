@@ -244,23 +244,25 @@ const Products = () => {
     return () => clearTimeout(timer);
   }, [activeSlide]);
 
-  const togglePlay = async () => {
-    const video = videoRef.current;
+ const togglePlay = async () => {
+  const video = videoRef.current;
 
-    if (!video) return;
+  if (!video) return;
 
-    if (video.paused) {
-      try {
-        await video.play();
-        setIsPlaying(true);
-      } catch {
-        setIsPlaying(false);
-      }
-    } else {
-      video.pause();
+  if (video.paused) {
+    try {
+      await video.play();
+      setIsPlaying(true);
+      setIsPaused(false);
+    } catch {
       setIsPlaying(false);
     }
-  };
+  } else {
+    video.pause();
+    setIsPlaying(false);
+    setIsPaused(true);
+  }
+};
 
   const handleVideoLoaded = () => {
     const currentVideo = slides[activeSlide]?.video;
