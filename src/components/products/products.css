@@ -1868,48 +1868,6 @@ img {
   font-weight: 400;
 }
 
-.accessory-btn {
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 0.5rem;
-
-  margin-top: 1.5rem;
-
-  padding:
-    0.7rem 1.5rem;
-
-  background: transparent;
-
-  border:
-    1px solid
-    #0672ce;
-
-  color: #0672ce;
-
-  font-size: 0.65rem;
-
-  font-weight: 600;
-
-  letter-spacing: 1.5px;
-
-  cursor: pointer;
-
-  transition:
-    all 0.3s ease;
-}
-
-.accessory-btn:hover {
-  background: #0672ce;
-
-  color: #fff;
-
-  transform: translateY(-2px);
-}
-
 .accessory-dots {
   display: flex;
 

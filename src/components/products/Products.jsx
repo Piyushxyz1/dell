@@ -903,15 +903,7 @@ const Products = () => {
 
                       </div>
 
-                      <button className="accessory-btn">
-
-                        ADD TO CART
-
-                        <ArrowRight
-                          size={14}
-                        />
-
-                      </button>
+                     
 
                     </div>
 
