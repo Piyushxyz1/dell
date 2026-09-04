@@ -1,5 +1,5 @@
 /* =========================================================
-   RESET
+   ROOT / RESET
 ========================================================= */
 
 * {
@@ -27,6 +27,7 @@ body {
   overflow-x: hidden;
 
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 button {
@@ -36,13 +37,15 @@ button {
   outline: none;
 }
 
+img {
+  max-width: 100%;
+}
+
 .page {
   width: 100%;
   max-width: none;
   margin: 0 auto;
-
   background: #0a0a0a;
-
   position: relative;
 }
 
@@ -61,16 +64,102 @@ button {
 
 .small-heading {
   display: inline-block;
-
   margin-bottom: 1rem;
-
   color: #0672ce;
-
   font-size: 0.7rem;
   font-weight: 600;
-
   letter-spacing: 3px;
   text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CUSTOM CIRCLE ARROW SLIDER BUTTONS
+========================================================= */
+
+.custom-slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  z-index: 20;
+
+  height: 50px;
+  width: 50px;
+
+  background: rgba(0, 0, 0, 0.3);
+
+  border: 2px solid rgba(255, 255, 255, 0.9);
+
+  border-radius: 50%;
+
+  backdrop-filter: blur(4px);
+
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.9)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 24px 24px;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.custom-slider-btn:first-of-type {
+  left: 2rem;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.custom-slider-btn:last-of-type {
+  right: 2rem;
+}
+
+
+
+.custom-slider-btn:first-of-type:hover {
+  transform: translateY(-50%) rotate(180deg) scale(1.1);
+}
+
+.custom-slider-btn:last-of-type:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.hero-controls .custom-slider-btn {
+  position: static;
+  transform: none;
+  display: inline-flex;
+}
+
+.hero-controls .custom-slider-btn:first-of-type {
+  transform: rotate(180deg);
+}
+
+.hero-controls .custom-slider-btn:hover {
+  transform: scale(1.1);
+}
+
+.hero-controls .custom-slider-btn:first-of-type:hover {
+  transform: rotate(180deg) scale(1.1);
+}
+
+.accessories-carousel-wrapper .custom-slider-btn,
+.white-section .custom-slider-btn {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+
+  background-color: rgba(255, 255, 255, 0.5);
+
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(0,0,0,0.7)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+
+.white-section {
+  background: #ffffff;
+  color: #0a0a0a;
+  padding: 1rem 0;
 }
 
 
@@ -83,6 +172,7 @@ button {
 
   width: 100vw;
   height: 100vh;
+
   min-height: 700px;
 
   overflow: hidden;
@@ -121,7 +211,7 @@ button {
 }
 
 .fallback-image {
-  object-fit: cover;
+  background: #080808;
 }
 
 .video-loader {
@@ -142,6 +232,7 @@ button {
   height: 45px;
 
   border: 2px solid rgba(255, 255, 255, 0.15);
+
   border-top-color: #0672ce;
 
   border-radius: 50%;
@@ -173,6 +264,7 @@ button {
 
 .hero-overlay-bottom {
   position: absolute;
+
   left: 0;
   right: 0;
   bottom: 0;
@@ -215,6 +307,7 @@ button {
   font-weight: 600;
 
   letter-spacing: 4px;
+
   text-transform: uppercase;
 
   opacity: 0.8;
@@ -244,17 +337,21 @@ button {
   color: rgba(255, 255, 255, 0.72);
 
   font-size: 1rem;
+
   line-height: 1.7;
 }
 
 .know-more {
   display: inline-flex;
+
   align-items: center;
+
   gap: 0.7rem;
 
   padding: 0.9rem 1.3rem;
 
   background: #0672ce;
+
   color: #fff;
 
   font-size: 0.72rem;
@@ -272,11 +369,6 @@ button {
   transform: translateY(-2px);
 }
 
-
-/* =========================================================
-   PRICE BADGE
-========================================================= */
-
 .price-badge {
   position: absolute;
 
@@ -289,8 +381,11 @@ button {
   height: 180px;
 
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
 
   border-radius: 50%;
@@ -315,9 +410,12 @@ button {
   content: "";
 
   position: absolute;
+
   inset: 7px;
 
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.1);
 
   border-radius: 50%;
 }
@@ -330,6 +428,7 @@ button {
   color: rgba(255, 255, 255, 0.55);
 
   font-size: 0.55rem;
+
   font-weight: 600;
 
   letter-spacing: 1.5px;
@@ -341,6 +440,7 @@ button {
   color: #fff;
 
   font-size: 1.15rem;
+
   font-weight: 600;
 }
 
@@ -356,11 +456,6 @@ button {
   letter-spacing: 1px;
 }
 
-
-/* =========================================================
-   VIDEO CONTROL
-========================================================= */
-
 .video-control {
   position: absolute;
 
@@ -373,14 +468,18 @@ button {
   height: 42px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.25);
 
   border-radius: 50%;
 
   background: rgba(0, 0, 0, 0.25);
+
   color: #fff;
 
   backdrop-filter: blur(8px);
@@ -392,13 +491,9 @@ button {
 
 .video-control:hover {
   background: rgba(6, 114, 206, 0.6);
+
   border-color: #0672ce;
 }
-
-
-/* =========================================================
-   HERO CONTROLS
-========================================================= */
 
 .hero-controls {
   position: absolute;
@@ -409,38 +504,17 @@ button {
   z-index: 10;
 
   display: flex;
+
   align-items: center;
+
   gap: 1rem;
-}
-
-.hero-controls > button {
-  width: 40px;
-  height: 40px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
-  border-radius: 50%;
-
-  background: rgba(0, 0, 0, 0.25);
-  color: #fff;
-
-  backdrop-filter: blur(8px);
-
-  transition: 0.3s ease;
-}
-
-.hero-controls > button:hover {
-  background: #0672ce;
-  border-color: #0672ce;
 }
 
 .hero-dots {
   display: flex;
+
   align-items: center;
+
   gap: 0.5rem;
 }
 
@@ -482,326 +556,6 @@ button {
 
 
 /* =========================================================
-   INTRO
-========================================================= */
-
-.intro-section {
-  width: 100%;
-
-  padding: 8rem 8%;
-
-  text-align: center;
-
-  background: #0a0a0a;
-}
-
-.intro-section h2 {
-  max-width: 900px;
-
-  margin: 0 auto 1.5rem;
-
-  font-size: clamp(3rem, 6vw, 6rem);
-
-  line-height: 0.95;
-
-  font-weight: 400;
-
-  letter-spacing: -3px;
-}
-
-.intro-section h2 span {
-  color: #0672ce;
-}
-
-.intro-section p {
-  max-width: 650px;
-
-  margin: 0 auto;
-
-  color: rgba(255, 255, 255, 0.55);
-
-  line-height: 1.8;
-}
-
-
-/* =========================================================
-   XPS
-========================================================= */
-
-.xps-section {
-  width: 100%;
-
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(0, 1fr);
-
-  align-items: center;
-
-  gap: 5rem;
-
-  padding: 7rem 7%;
-
-  background:
-    linear-gradient(
-      135deg,
-      #101010,
-      #080808
-    );
-
-  overflow: hidden;
-}
-
-.xps-copy {
-  min-width: 0;
-}
-
-.xps-copy h2 {
-  margin-bottom: 1.5rem;
-
-  font-size: clamp(3rem, 5vw, 5rem);
-
-  line-height: 0.95;
-
-  font-weight: 400;
-
-  letter-spacing: -3px;
-}
-
-.xps-copy h2 span {
-  display: block;
-
-  color: #0672ce;
-}
-
-.xps-copy p {
-  max-width: 500px;
-
-  margin-bottom: 2rem;
-
-  color: rgba(255, 255, 255, 0.6);
-
-  line-height: 1.8;
-}
-
-.xps-price {
-  display: flex;
-  align-items: center;
-
-  gap: 1rem;
-
-  margin-bottom: 2rem;
-}
-
-.xps-price span {
-  color: rgba(255, 255, 255, 0.45);
-
-  font-size: 0.8rem;
-}
-
-.xps-price strong {
-  font-size: 2rem;
-  font-weight: 500;
-}
-
-.dark-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-
-  padding: 1rem 1.5rem;
-
-  background: #fff;
-  color: #080808;
-
-  font-size: 0.7rem;
-  font-weight: 700;
-
-  letter-spacing: 1.5px;
-
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.dark-button:hover {
-  background: #0672ce;
-  color: #fff;
-
-  transform: translateY(-2px);
-}
-
-.xps-product {
-  min-width: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.xps-product img {
-  display: block;
-
-  width: 100%;
-  max-width: 650px;
-
-  height: auto;
-
-  object-fit: contain;
-
-  filter:
-    drop-shadow(
-      0 30px 50px rgba(0, 0, 0, 0.5)
-    );
-}
-
-
-/* =========================================================
-   ACCESSORIES
-========================================================= */
-
-.accessories-section {
-  width: 100%;
-
-  padding: 7rem 5%;
-
-  background: #0a0a0a;
-
-  overflow: hidden;
-}
-
-.accessories-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-
-  margin-bottom: 3rem;
-}
-
-.accessories-header h2 {
-  font-size: clamp(3rem, 5vw, 5rem);
-
-  line-height: 0.95;
-
-  font-weight: 400;
-
-  letter-spacing: -3px;
-}
-
-.accessories-header h2 span {
-  color: #0672ce;
-}
-
-.accessory-controls {
-  display: flex;
-  gap: 0.7rem;
-}
-
-.accessory-controls button {
-  width: 44px;
-  height: 44px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid rgba(255, 255, 255, 0.15);
-
-  border-radius: 50%;
-
-  background: transparent;
-  color: #fff;
-
-  transition: 0.3s ease;
-}
-
-.accessory-controls button:hover {
-  background: #0672ce;
-  border-color: #0672ce;
-}
-
-.accessories-carousel-wrapper {
-  width: 100%;
-
-  overflow: hidden;
-}
-
-.accessories-carousel {
-  width: 100%;
-
-  overflow: hidden;
-}
-
-.accessories-track {
-  display: flex;
-
-  gap: var(--accessory-gap, 2rem);
-
-  width: max-content;
-}
-
-.accessory-slide {
-  flex: 0 0 calc(
-    (90vw - (2 * var(--accessory-gap, 2rem))) / 2.5
-  );
-
-  min-width: 0;
-}
-
-.accessory-image {
-  width: 100%;
-  height: 450px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #111;
-
-  overflow: hidden;
-}
-
-.accessory-image img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-
-  transition: transform 0.6s
-    cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.accessory-slide:hover
-.accessory-image img {
-  transform: scale(1.04);
-}
-
-.accessory-info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 1rem;
-
-  padding: 1.2rem 0;
-}
-
-.accessory-info h3 {
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.accessory-info strong {
-  font-size: 0.9rem;
-  font-weight: 500;
-
-  color: rgba(255, 255, 255, 0.65);
-}
-
-
-/* =========================================================
    SPECIAL OFFER
 ========================================================= */
 
@@ -836,15 +590,18 @@ button {
   min-width: 0;
 }
 
-.special-offer-content
-.small-heading {
+.special-offer-content .small-heading {
   color: #0672ce;
 }
 
 .special-offer-content h2 {
   margin-bottom: 1.5rem;
 
-  font-size: clamp(3rem, 5vw, 5rem);
+  font-size: clamp(
+    3rem,
+    5vw,
+    5rem
+  );
 
   line-height: 0.95;
 
@@ -875,7 +632,9 @@ button {
 
 .price-row {
   display: flex;
+
   align-items: center;
+
   gap: 1rem;
 }
 
@@ -893,6 +652,7 @@ button {
 
 .special-offer-badge {
   display: flex;
+
   align-items: center;
 
   margin-bottom: 1.5rem;
@@ -900,6 +660,7 @@ button {
   color: #0672ce;
 
   font-size: 0.65rem;
+
   font-weight: 700;
 
   letter-spacing: 2px;
@@ -907,6 +668,7 @@ button {
 
 .special-offer-features {
   display: flex;
+
   flex-wrap: wrap;
 
   gap: 1.5rem;
@@ -922,59 +684,636 @@ button {
   min-width: 0;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
+
+  overflow: visible;
+}
+
+.special-offer-image-wrap {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 650px;
+
+  overflow: hidden;
+
+  background: #ddd;
+}
+
+.special-offer-image-wrap::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(244, 244, 244, 0.2),
+      transparent 30%,
+      transparent 70%,
+      rgba(244, 244, 244, 0.15)
+    );
+
+  pointer-events: none;
 }
 
 .special-offer-image img {
   display: block;
 
   width: 100%;
-  max-width: 650px;
+
+  height: auto;
+
+  aspect-ratio: 16 / 11;
+
+  object-fit: cover;
+
+  mix-blend-mode: multiply;
+
+  transition:
+    transform 0.8s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+.special-offer-image:hover img {
+  transform: scale(1.025);
+}
+
+
+/* =========================================================
+   ALIENWARE HERO
+========================================================= */
+
+.alienware-hero {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 720px;
+
+  height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+
+  overflow: hidden;
+
+  background: #030305;
+
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   ALIENWARE BACKGROUND
+========================================================= */
+
+.alienware-bg {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -3;
+
+  background:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(40, 70, 120, 0.18),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 78% 48%,
+      rgba(30, 55, 110, 0.14),
+      transparent 38%
+    ),
+    linear-gradient(
+      135deg,
+      #020204 0%,
+      #080a11 48%,
+      #020204 100%
+    );
+}
+
+.alienware-bg::before {
+  content: "";
+
+  position: absolute;
+
+  width: 650px;
+  height: 650px;
+
+  left: -260px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(50, 90, 150, 0.18),
+      transparent 68%
+    );
+
+  filter: blur(35px);
+}
+
+
+/* =========================================================
+   ALIENWARE OVERLAY
+========================================================= */
+
+.alienware-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -2;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(2, 2, 5, 0.12) 0%,
+      rgba(2, 2, 5, 0.3) 55%,
+      rgba(2, 2, 5, 0.75) 100%
+    );
+}
+
+
+/* =========================================================
+   ALIENWARE CONTENT
+========================================================= */
+
+.alienware-content {
+  position: relative;
+
+  z-index: 3;
+
+  width: min(
+    1450px,
+    92%
+  );
+
+  min-height: 720px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.2fr)
+    minmax(350px, 0.8fr);
+
+  align-items: center;
+
+  gap: 3rem;
+}
+
+
+/* =========================================================
+   LAPTOP AREA
+========================================================= */
+
+.alienware-center-content {
+  position: relative;
+
+  z-index: 4;
+
+  width: 100%;
+
+  min-width: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+/* =========================================================
+   LAPTOP WRAPPER
+========================================================= */
+
+.alienware-laptop-wrap {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 900px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: transparent;
+
+  border: none;
+
+  padding: 0;
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   IMAGE GLOW
+========================================================= */
+
+.alienware-image-glow {
+  position: absolute;
+
+  width: 70%;
+  height: 65%;
+
+  left: 15%;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(60, 105, 180, 0.2),
+      transparent 68%
+    );
+
+  filter: blur(45px);
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+
+/* =========================================================
+   ACTUAL ALIENWARE IMAGE
+========================================================= */
+
+.alienware-laptop-wrap img {
+  position: relative;
+
+  z-index: 2;
+
+  display: block;
+
+  width: 100%;
+
+  max-width: 900px;
 
   height: auto;
 
   object-fit: contain;
 
-  mix-blend-mode: multiply;
+  background: transparent;
+
+  border: none;
+
+  outline: none;
+
+  user-select: none;
+
+  pointer-events: none;
+
+  -webkit-user-drag: none;
+
+  filter:
+    drop-shadow(
+      0 35px 45px
+      rgba(0, 0, 0, 0.7)
+    )
+    drop-shadow(
+      0 0 35px
+      rgba(45, 80, 145, 0.16)
+    );
+
+  transition:
+    transform 0.8s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+.alienware-laptop-wrap:hover img {
+  transform: scale(1.025);
 }
 
 
 /* =========================================================
-   ALIENWARE / OFFER
+   SECURE BADGE
 ========================================================= */
 
-.offer-section {
-  display: grid;
+.alienware-secure-badge {
+  position: absolute;
 
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(0, 1fr);
+  z-index: 5;
+
+  left: 50%;
+  bottom: 2%;
+
+  transform: translateX(-50%);
+
+  display: flex;
 
   align-items: center;
 
-  gap: 4rem;
+  gap: 9px;
 
-  padding: 6rem 5%;
+  padding: 10px 18px;
+
+  border-radius: 40px;
+
+  background:
+    rgba(8, 8, 12, 0.72);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(12px);
+
+  -webkit-backdrop-filter: blur(12px);
+
+  color: #fff;
+
+  font-size: 0.72rem;
+
+  white-space: nowrap;
+
+  box-shadow:
+    0 15px 40px
+    rgba(0, 0, 0, 0.35);
+}
+
+.alienware-secure-badge svg {
+  color: #0672ce;
+}
+
+
+/* =========================================================
+   ALIENWARE COPY
+========================================================= */
+
+.alienware-copy {
+  position: relative;
+
+  z-index: 5;
+
+  width: 100%;
+
+  max-width: 480px;
+
+  padding-right: 1rem;
+}
+
+.alienware-copy .small-heading {
+  color: #0672ce;
+}
+
+.alienware-copy h2 {
+  margin-bottom: 1.5rem;
+
+  font-size:
+    clamp(
+      3rem,
+      5vw,
+      5.2rem
+    );
+
+  line-height: 0.95;
+
+  font-weight: 400;
+
+  letter-spacing: -3px;
+
+  color: #fff;
+}
+
+.alienware-copy h2 strong {
+  display: block;
+
+  color: #0672ce;
+
+  font-weight: 600;
+}
+
+.alienware-copy p {
+  max-width: 410px;
+
+  margin-bottom: 2rem;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.62
+    );
+
+  font-size: 0.95rem;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   ALIENWARE PRICE
+========================================================= */
+
+.alienware-price {
+  display: flex;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  margin-bottom: 2rem;
+}
+
+.alienware-price del {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.38
+    );
+
+  font-size: 0.9rem;
+}
+
+.alienware-price strong {
+  color: #fff;
+
+  font-size: 1.7rem;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   XPS SECTION
+========================================================= */
+
+.xps-section {
+  --xps-bg:
+    url(
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=2600&q=94"
+    );
+
+  position: relative;
+
+  width: 100%;
+
+  min-height: 650px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.9fr)
+    minmax(0, 1.1fr);
+
+  align-items: center;
+
+  padding: 7rem 7%;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  background-color: #050505;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(3, 3, 3, 0.99) 0%,
+      rgba(3, 3, 3, 0.96) 24%,
+      rgba(3, 3, 3, 0.8) 43%,
+      rgba(3, 3, 3, 0.3) 68%,
+      rgba(3, 3, 3, 0.08) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.5)
+    ),
+    var(--xps-bg);
+
+  background-size:
+    100% 100%,
+    100% 100%,
+    cover;
+
+  background-position:
+    center,
+    center,
+    center right;
+
+  background-repeat: no-repeat;
+
+  background-attachment: scroll;
+}
+
+.xps-section::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  background:
+    radial-gradient(
+      circle at 78% 48%,
+      rgba(255, 255, 255, 0.045),
+      transparent 32%
+    );
+
+  pointer-events: none;
+}
+
+.xps-section::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
 
   background:
     linear-gradient(
-      135deg,
-      #111,
-      #090909
+      180deg,
+      rgba(0, 0, 0, 0.1),
+      transparent 35%,
+      rgba(0, 0, 0, 0.35)
     );
 
-  overflow: hidden;
+  pointer-events: none;
 }
 
-.offer-copy {
+.xps-background-glow {
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  right: 8%;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  z-index: -1;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(6, 114, 206, 0.08),
+      transparent 68%
+    );
+
+  filter: blur(20px);
+
+  pointer-events: none;
+}
+
+.xps-copy {
+  position: relative;
+
+  z-index: 5;
+
+  max-width: 540px;
+
   min-width: 0;
 }
 
-.offer-copy h2 {
+.xps-copy h2 {
   margin-bottom: 1.5rem;
 
-  font-size: clamp(3rem, 5vw, 5rem);
+  font-size:
+    clamp(
+      3rem,
+      5vw,
+      5rem
+    );
 
   line-height: 0.95;
 
@@ -983,23 +1322,31 @@ button {
   letter-spacing: -3px;
 }
 
-.offer-copy h2 strong {
+.xps-copy h2 span {
+  display: block;
+
   color: #0672ce;
-  font-weight: 500;
 }
 
-.offer-copy p {
+.xps-copy p {
   max-width: 500px;
 
   margin-bottom: 2rem;
 
-  color: rgba(255, 255, 255, 0.6);
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.6
+    );
 
   line-height: 1.8;
 }
 
-.offer-price {
+.xps-price {
   display: flex;
+
   align-items: center;
 
   gap: 1rem;
@@ -1007,48 +1354,750 @@ button {
   margin-bottom: 2rem;
 }
 
-.offer-price del {
-  color: rgba(255, 255, 255, 0.35);
+.xps-price span {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.45
+    );
 
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
-.offer-price strong {
+.xps-price strong {
+  font-size: 2rem;
+
+  font-weight: 500;
+}
+
+.xps-price-badge {
+  position: absolute;
+
+  right: 8%;
+  bottom: 12%;
+
+  z-index: 10;
+
+  width: 175px;
+  height: 175px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      5,
+      8,
+      18,
+      0.72
+    );
+
+  border:
+    1px solid
+    rgba(
+      6,
+      114,
+      206,
+      0.5
+    );
+
+  backdrop-filter: blur(12px);
+
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 0 0 2px
+      rgba(
+        6,
+        114,
+        206,
+        0.2
+      ),
+    0 0 0 7px
+      rgba(
+        6,
+        114,
+        206,
+        0.08
+      ),
+    0 0 0 14px
+      rgba(
+        6,
+        114,
+        206,
+        0.035
+      ),
+    0 20px 60px
+      rgba(0, 0, 0, 0.6);
+
+  animation:
+    xpsBadgeFloat
+    5s ease-in-out infinite;
+}
+
+.xps-price-badge::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 8px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.12
+    );
+
+  border-radius: 50%;
+}
+
+.xps-price-badge span {
+  position: relative;
+
+  margin-bottom: 0.55rem;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.5
+    );
+
+  font-size: 0.55rem;
+
+  font-weight: 600;
+
+  letter-spacing: 1.7px;
+}
+
+.xps-price-badge strong {
+  position: relative;
+
   color: #fff;
 
-  font-size: 2rem;
+  font-size: 1.1rem;
 
   font-weight: 600;
 }
 
-.headphone-image {
-  min-width: 0;
+.xps-price-badge small {
+  position: relative;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-top: 0.45rem;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.38
+    );
+
+  font-size: 0.48rem;
+
+  letter-spacing: 1.2px;
 }
 
-.headphone-image img {
+@keyframes xpsBadgeFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.dark-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.7rem;
+
+  padding: 1rem 1.5rem;
+
+  background: #fff;
+
+  color: #080808;
+
+  font-size: 0.7rem;
+
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.dark-button:hover {
+  background: #0672ce;
+
+  color: #fff;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 30px
+    rgba(6, 114, 206, 0.2);
+}
+
+
+/* =========================================================
+   ACCESSORIES
+========================================================= */
+
+.accessories-section {
+  position: relative;
+
+  width: 100%;
+
+  background: #ffffff;
+
+  color: #0a0a0a;
+
+  padding: 7rem 0 2rem;
+
+  overflow: hidden;
+}
+
+.accessories-glow {
+  position: absolute;
+
+  top: -100px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 800px;
+  height: 400px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(6, 114, 206, 0.05),
+      transparent 70%
+    );
+
+  z-index: -1;
+
+  pointer-events: none;
+}
+
+.accessories-header {
+  width: 100%;
+
+  padding:
+    0 4rem 4rem;
+
+  text-align: center;
+}
+
+.accessories-header > div {
+  max-width: 1400px;
+
+  margin: 0 auto;
+}
+
+.accessories-header .small-heading {
+  color: #0672ce;
+
+  font-size: 0.75rem;
+
+  letter-spacing: 4px;
+}
+
+.accessories-header h2 {
+  margin-top: 0.8rem;
+
+  font-size:
+    clamp(
+      3rem,
+      5vw,
+      5.5rem
+    );
+
+  line-height: 0.95;
+
+  font-weight: 400;
+
+  letter-spacing: -0.05em;
+
+  color: #0a0a0a;
+}
+
+.accessories-header h2 span {
+  color: #0672ce;
+
+  font-weight: 700;
+}
+
+.accessories-header p {
+  max-width: 600px;
+
+  margin:
+    1.5rem auto 0;
+
+  color:
+    rgba(
+      0,
+      0,
+      0,
+      0.6
+    );
+
+  line-height: 1.7;
+}
+
+.accessories-carousel-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.accessories-carousel {
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.accessories-track {
+  display: flex;
+
+  width: max-content;
+
+  gap: 0;
+
+  will-change: transform;
+}
+
+.accessory-slide {
+  position: relative;
+
+  flex:
+    0 0 100vw;
+
+  width: 100vw;
+
+  min-width: 100vw;
+
+  height: 75vh;
+
+  min-height: 550px;
+
+  max-height: 750px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: transparent;
+
+  overflow: hidden;
+
+  padding: 2rem;
+}
+
+.accessory-image {
+  position: relative;
+
+  width: 100%;
+
+  height: 65%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+
+  overflow: hidden;
+
+  padding: 2rem;
+
+  margin-bottom: 1rem;
+}
+
+.accessory-image img {
   display: block;
 
   width: 100%;
-  max-width: 650px;
 
-  height: auto;
+  height: 100%;
+
+  max-width: 700px;
 
   object-fit: contain;
 
+  background: transparent;
+
+  border: 0;
+
+  outline: none;
+
+  user-select: none;
+
+  pointer-events: none;
+
+  -webkit-user-drag: none;
+
   filter:
     drop-shadow(
-      0 30px 50px rgba(0, 0, 0, 0.5)
+      0 20px 40px
+      rgba(0, 0, 0, 0.1)
+    );
+
+  transition:
+    transform 0.7s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+.accessory-slide:hover
+.accessory-image img {
+  transform: scale(1.05);
+}
+
+.accessory-info {
+  width: 100%;
+
+  max-width: 700px;
+
+  padding:
+    1.5rem 2rem;
+
+  text-align: center;
+
+  background:
+    rgba(
+      0,
+      0,
+      0,
+      0.03
+    );
+
+  border:
+    1px solid
+    rgba(
+      0,
+      0,
+      0,
+      0.1
+    );
+
+  border-radius: 12px;
+}
+
+.accessory-info h3 {
+  margin: 0;
+
+  font-size:
+    clamp(
+      1.1rem,
+      2vw,
+      1.8rem
+    );
+
+  line-height: 1.3;
+
+  font-weight: 500;
+
+  letter-spacing: -0.025em;
+
+  color: #0a0a0a;
+}
+
+.accessory-pricing {
+  margin-top: 0.6rem;
+}
+
+.accessory-pricing strong {
+  font-size: 1.4rem;
+
+  font-weight: 600;
+
+  color: #0672ce;
+}
+
+.accessory-price-note {
+  display: block;
+
+  font-size: 0.7rem;
+
+  color:
+    rgba(
+      0,
+      0,
+      0,
+      0.5
+    );
+
+  margin-top: 0.3rem;
+
+  font-weight: 400;
+}
+
+.accessory-btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 0.5rem;
+
+  margin-top: 1.5rem;
+
+  padding:
+    0.7rem 1.5rem;
+
+  background: transparent;
+
+  border:
+    1px solid
+    #0672ce;
+
+  color: #0672ce;
+
+  font-size: 0.65rem;
+
+  font-weight: 600;
+
+  letter-spacing: 1.5px;
+
+  cursor: pointer;
+
+  transition:
+    all 0.3s ease;
+}
+
+.accessory-btn:hover {
+  background: #0672ce;
+
+  color: #fff;
+
+  transform: translateY(-2px);
+}
+
+.accessory-dots {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 0.6rem;
+
+  padding:
+    2rem 0 1rem;
+}
+
+.accessory-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      0,
+      0,
+      0,
+      0.2
+    );
+
+  border: none;
+
+  cursor: pointer;
+
+  transition:
+    all 0.3s ease;
+
+  padding: 0;
+}
+
+.accessory-dot.active {
+  background: #0672ce;
+
+  width: 28px;
+
+  border-radius: 4px;
+}
+
+.accessory-dot:hover {
+  background: #0672ce;
+
+  transform: scale(1.1);
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro-section {
+  position: relative;
+
+  min-height: 80vh;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-start;
+
+  padding: 80px 5%;
+
+  overflow: hidden;
+
+  background-color: #0a0a0a;
+}
+
+.intro-background {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 1;
+
+  background-image:
+    url(
+      "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=2200&q=92"
+    );
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+}
+
+.intro-overlay {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 2;
+
+  background:
+    linear-gradient(
+      to right,
+      rgba(10, 10, 10, 0.95) 0%,
+      rgba(10, 10, 10, 0.6) 40%,
+      rgba(10, 10, 10, 0.1) 100%
+    );
+}
+
+.intro-overlay-bottom {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 2;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(10, 10, 10, 1) 0%,
+      transparent 60%
+    );
+}
+
+.intro-content {
+  position: relative;
+
+  z-index: 3;
+
+  max-width: 600px;
+}
+
+.intro-content .small-heading,
+.intro-content h2,
+.intro-content p {
+  color: #ffffff;
+}
+
+.intro-content h2 {
+  margin-bottom: 1.5rem;
+
+  font-size:
+    clamp(
+      3rem,
+      6vw,
+      6rem
+    );
+
+  line-height: 0.95;
+
+  font-weight: 400;
+
+  letter-spacing: -3px;
+}
+
+.intro-content h2 span {
+  color: #0672ce;
+}
+
+.intro-content p {
+  max-width: 500px;
+
+  line-height: 1.8;
+
+  margin-top: 1.5rem;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.7
     );
 }
 
 
 /* =========================================================
-   TABLET
-   769px - 1024px
+   RESPONSIVENESS — 1024px
 ========================================================= */
 
 @media (max-width: 1024px) {
@@ -1061,7 +2110,50 @@ button {
     font-size: 3.5rem;
   }
 
-  /* ================= XPS ROW ================= */
+
+  /* ALIENWARE */
+
+  .alienware-hero {
+    min-height: 650px;
+    height: 80vh;
+  }
+
+  .alienware-content {
+    width: 94%;
+
+    min-height: 650px;
+
+    grid-template-columns:
+      minmax(0, 1.15fr)
+      minmax(280px, 0.85fr);
+
+    gap: 1rem;
+  }
+
+  .alienware-copy {
+    padding-right: 0;
+  }
+
+  .alienware-copy h2 {
+    font-size: 3.3rem;
+  }
+
+  .alienware-copy p {
+    font-size: 0.85rem;
+
+    max-width: 350px;
+  }
+
+  .alienware-price strong {
+    font-size: 1.4rem;
+  }
+
+  .alienware-laptop-wrap {
+    width: 100%;
+  }
+
+
+  /* XPS */
 
   .xps-section {
     grid-template-columns:
@@ -1073,10 +2165,6 @@ button {
     padding: 5rem 4%;
   }
 
-  .xps-copy {
-    min-width: 0;
-  }
-
   .xps-copy h2 {
     font-size: 3.4rem;
   }
@@ -1085,62 +2173,49 @@ button {
     max-width: 400px;
   }
 
-  .xps-price {
-    gap: 0.8rem;
-  }
+  .xps-price-badge {
+    width: 145px;
+    height: 145px;
 
-  .xps-price strong {
-    font-size: 1.8rem;
-  }
-
-  .xps-product {
-    width: 100%;
-  }
-
-  .xps-product img {
-    width: 100%;
-    max-width: 100%;
+    right: 4%;
+    bottom: 8%;
   }
 
 
-  /* ================= ALIENWARE ROW ================= */
+  /* ACCESSORIES */
 
-  .offer-section {
-    grid-template-columns:
-      minmax(0, 1fr)
-      minmax(0, 1fr);
-
-    text-align: left;
-
-    gap: 2.5rem;
-
-    padding: 5rem 4%;
+  .accessories-section {
+    padding-top: 5rem;
   }
 
-  .offer-copy {
-    min-width: 0;
+  .accessories-header {
+    padding:
+      0 2rem 3rem;
   }
 
-  .offer-copy p {
-    margin-left: 0;
-    margin-right: auto;
+  .accessory-slide {
+    height: 70vh;
+
+    min-height: 500px;
   }
 
-  .offer-price {
-    justify-content: flex-start;
+  .accessory-image {
+    height: 65%;
+
+    padding: 1.5rem;
   }
 
-  .headphone-image {
-    width: 100%;
+  .accessory-image img {
+    max-width: 600px;
   }
 
-  .headphone-image img {
-    width: 100%;
-    max-width: 100%;
+  .custom-slider-btn {
+    width: 44px;
+    height: 44px;
   }
 
 
-  /* ================= SPECIAL OFFER ================= */
+  /* SPECIAL OFFER */
 
   .special-offer-section {
     grid-template-columns: 1fr;
@@ -1153,32 +2228,45 @@ button {
     margin-right: auto;
   }
 
-  .special-offer-price
-  .price-row {
+  .special-offer-price .price-row {
     justify-content: center;
   }
 
-  .special-offer-image img {
-    max-width: 70%;
-  }
-
-  .special-offer-badge {
-    justify-content: center;
-  }
-
+  .special-offer-badge,
   .special-offer-features {
     justify-content: center;
+  }
+
+  .offer-section {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    gap: 2.5rem;
+
+    padding: 5rem 4%;
+  }
+
+  .offer-copy p {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .offer-price {
+    justify-content: flex-start;
+  }
+
+  .headphone-image img {
+    width: 100%;
   }
 }
 
 
 /* =========================================================
-   MOBILE
+   768px
 ========================================================= */
 
 @media (max-width: 768px) {
-
-  /* ================= HERO ================= */
 
   .hero {
     min-height: 650px;
@@ -1208,11 +2296,13 @@ button {
 
   .price-badge {
     left: 50%;
+
     right: auto;
 
     bottom: 19%;
 
-    transform: translateX(-50%);
+    transform:
+      translateX(-50%);
 
     width: 140px;
     height: 140px;
@@ -1239,23 +2329,112 @@ button {
   }
 
 
-  /* ================= INTRO ================= */
+  /* =====================================================
+     ALIENWARE MOBILE
+  ===================================================== */
 
-  .intro-section {
-    padding: 5rem 1.5rem;
+  .alienware-hero {
+    height: auto;
+
+    min-height: 720px;
+
+    padding:
+      5rem 0;
+
+    display: block;
   }
 
-  .intro-section h2 {
+  .alienware-content {
+    width: 92%;
+
+    min-height: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2rem;
+
+    align-items: center;
+  }
+
+  .alienware-center-content {
+    width: 100%;
+
+    order: 1;
+  }
+
+  .alienware-laptop-wrap {
+    width: 100%;
+
+    max-width: 650px;
+  }
+
+  .alienware-laptop-wrap img {
+    width: 110%;
+
+    max-width: none;
+
+    margin-left: -5%;
+  }
+
+  .alienware-secure-badge {
+    bottom: 1%;
+  }
+
+  .alienware-copy {
+    width: 100%;
+
+    max-width: 600px;
+
+    padding: 0;
+
+    text-align: center;
+
+    order: 2;
+  }
+
+  .alienware-copy h2 {
+    font-size: 3rem;
+  }
+
+  .alienware-copy p {
+    margin-left: auto;
+
+    margin-right: auto;
+
+    max-width: 500px;
+  }
+
+  .alienware-price {
+    justify-content: center;
+  }
+
+
+  /* =====================================================
+     INTRO
+  ===================================================== */
+
+  .intro-section {
+    padding:
+      5rem 1.5rem;
+  }
+
+  .intro-content h2 {
     font-size: 3rem;
 
     letter-spacing: -2px;
   }
 
 
-  /* ================= XPS ================= */
+  /* =====================================================
+     XPS
+  ===================================================== */
 
   .xps-section {
     width: 100%;
+
+    min-height: 720px;
 
     display: flex;
 
@@ -1263,15 +2442,59 @@ button {
 
     align-items: center;
 
-    gap: 3rem;
+    justify-content: center;
 
-    padding: 4.5rem 1.5rem;
+    gap: 2rem;
 
-    overflow: hidden;
+    padding:
+      5rem 1.5rem;
+
+    text-align: center;
+
+    background-position:
+      center,
+      center,
+      72% center;
+
+    background-size:
+      cover,
+      cover,
+      cover;
+  }
+
+  .xps-section::after {
+    z-index: 0;
+
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.96) 0%,
+        rgba(0, 0, 0, 0.72) 40%,
+        rgba(0, 0, 0, 0.2) 70%,
+        rgba(0, 0, 0, 0.72) 100%
+      );
+  }
+
+  .xps-background-glow {
+    width: 320px;
+    height: 320px;
+
+    right: 50%;
+    top: 63%;
+
+    transform:
+      translate(
+        50%,
+        -50%
+      );
   }
 
   .xps-copy {
     width: 100%;
+
+    max-width: 600px;
+
+    z-index: 5;
 
     text-align: center;
   }
@@ -1284,6 +2507,7 @@ button {
 
   .xps-copy p {
     margin-left: auto;
+
     margin-right: auto;
   }
 
@@ -1291,48 +2515,130 @@ button {
     justify-content: center;
   }
 
-  .xps-product {
-    width: 100%;
+  .xps-price-badge {
+    position: relative;
+
+    right: auto;
+    bottom: auto;
+
+    z-index: 6;
+
+    flex-shrink: 0;
+
+    width: 135px;
+    height: 135px;
   }
 
-  .xps-product img {
-    width: 100%;
+  .xps-price-badge strong {
+    font-size: 0.8rem;
+  }
+
+  .xps-price-badge span {
+    font-size: 0.46rem;
+  }
+
+  .xps-price-badge small {
+    font-size: 0.4rem;
   }
 
 
-  /* ================= ACCESSORIES ================= */
+  /* =====================================================
+     ACCESSORIES
+  ===================================================== */
 
   .accessories-section {
-    padding: 5rem 1.5rem;
+    padding-top: 4rem;
+
+    padding-bottom: 2rem;
   }
 
   .accessories-header {
-    align-items: flex-start;
-
-    flex-direction: column;
-
-    gap: 2rem;
+    padding:
+      0 1.25rem 2.5rem;
   }
 
   .accessories-header h2 {
-    font-size: 3rem;
-
-    letter-spacing: -2px;
+    font-size:
+      clamp(
+        2.5rem,
+        10vw,
+        3.5rem
+      );
   }
 
   .accessory-slide {
-    flex: 0 0 80vw;
+    height: 70vh;
+
+    min-height: 450px;
+
+    max-height: 600px;
   }
 
   .accessory-image {
-    height: 380px;
+    height: 60%;
+
+    padding: 1rem;
+  }
+
+  .accessory-image img {
+    max-width: 100%;
+
+    padding: 0 1rem;
+  }
+
+  .accessory-info {
+    padding:
+      1rem 1.5rem 2rem;
+  }
+
+  .accessory-info h3 {
+    font-size: 1rem;
+  }
+
+  .accessory-pricing strong {
+    font-size: 1rem;
+  }
+
+  .custom-slider-btn {
+    width: 36px;
+    height: 36px;
+
+    background-size:
+      18px 18px;
+  }
+
+  .custom-slider-btn:first-of-type {
+    left: 0.6rem;
+  }
+
+  .custom-slider-btn:last-of-type {
+    right: 0.6rem;
+  }
+
+  .accessory-dots {
+    padding:
+      1.5rem 0 0.5rem;
+
+    gap: 0.5rem;
+  }
+
+  .accessory-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .accessory-dot.active {
+    width: 20px;
   }
 
 
-  /* ================= SPECIAL OFFER ================= */
+  /* =====================================================
+     SPECIAL OFFER
+  ===================================================== */
 
   .special-offer-section {
-    padding: 5rem 1.5rem;
+    padding:
+      5rem 1.5rem;
 
     gap: 3rem;
   }
@@ -1347,9 +2653,6 @@ button {
     max-width: 100%;
   }
 
-
-  /* ================= ALIENWARE ================= */
-
   .offer-section {
     grid-template-columns: 1fr;
 
@@ -1357,7 +2660,8 @@ button {
 
     gap: 3rem;
 
-    padding: 5rem 1.5rem;
+    padding:
+      5rem 1.5rem;
   }
 
   .offer-copy h2 {
@@ -1368,6 +2672,7 @@ button {
 
   .offer-copy p {
     margin-left: auto;
+
     margin-right: auto;
   }
 
@@ -1382,7 +2687,7 @@ button {
 
 
 /* =========================================================
-   SMALL MOBILE
+   480px
 ========================================================= */
 
 @media (max-width: 480px) {
@@ -1405,11 +2710,13 @@ button {
 
   .price-badge {
     left: 50%;
+
     right: auto;
 
     bottom: 18%;
 
-    transform: translateX(-50%);
+    transform:
+      translateX(-50%);
 
     width: 110px;
     height: 110px;
@@ -1429,9 +2736,64 @@ button {
     font-size: 0.38rem;
   }
 
-  .intro-section h2 {
+
+  /* ALIENWARE */
+
+  .alienware-hero {
+    min-height: 680px;
+
+    padding:
+      4rem 0;
+  }
+
+  .alienware-content {
+    width: 94%;
+  }
+
+  .alienware-center-content {
+    width: 100%;
+  }
+
+  .alienware-laptop-wrap {
+    width: 100%;
+  }
+
+  .alienware-laptop-wrap img {
+    width: 120%;
+
+    margin-left: -10%;
+  }
+
+  .alienware-copy h2 {
+    font-size: 2.6rem;
+
+    letter-spacing: -2px;
+  }
+
+  .alienware-copy p {
+    font-size: 0.82rem;
+  }
+
+  .alienware-price strong {
+    font-size: 1.25rem;
+  }
+
+  .alienware-secure-badge {
+    font-size: 0.65rem;
+
+    padding:
+      8px 13px;
+  }
+
+
+  /* INTRO */
+
+  .intro-content h2 {
     font-size: 2.5rem;
   }
+
+
+  /* XPS */
 
   .xps-copy h2,
   .accessories-header h2,
@@ -1446,18 +2808,120 @@ button {
     font-size: 1.5rem;
   }
 
+  .xps-section {
+    min-height: 680px;
+
+    background-position:
+      center,
+      center,
+      70% center;
+  }
+
+  .xps-price-badge {
+    width: 120px;
+    height: 120px;
+  }
+
+  .xps-price-badge strong {
+    font-size: 0.72rem;
+  }
+
+  .special-offer-features {
+    gap: 0.8rem;
+  }
+
+
+  /* ACCESSORIES */
+
+  .accessory-slide {
+    height: 65vh;
+
+    min-height: 400px;
+
+    max-height: 500px;
+  }
+
   .accessory-image {
-    height: 320px;
+    height: 55%;
+
+    padding: 0.5rem;
+  }
+
+  .accessory-image img {
+    padding: 0 0.5rem;
+  }
+
+  .accessory-info h3 {
+    font-size: 0.9rem;
+  }
+
+  .custom-slider-btn {
+    width: 30px;
+    height: 30px;
+
+    border-width: 1.5px;
+
+    background-size:
+      16px 16px;
+  }
+
+  .custom-slider-btn:first-of-type {
+    left: 0.4rem;
+  }
+
+  .custom-slider-btn:last-of-type {
+    right: 0.4rem;
   }
 }
 
 
 /* =========================================================
-   PRICE BADGE HIDDEN ON SMALL SCREENS
+   360px
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .hero-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .xps-copy h2,
+  .accessories-header h2,
+  .special-offer-content h2,
+  .offer-copy h2 {
+    font-size: 2.25rem;
+  }
+
+  .xps-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .accessories-section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .offer-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .custom-slider-btn {
+    width: 26px;
+    height: 26px;
+
+    background-size:
+      14px 14px;
+  }
+}
+
+
+/* =========================================================
+   HIDE HERO PRICE ON SMALL SCREENS
 ========================================================= */
 
 @media (max-width: 600px) {
-
   .price-badge {
     display: none;
   }
@@ -1465,7 +2929,7 @@ button {
 
 
 /* =========================================================
-   ACCESSIBILITY
+   REDUCED MOTION
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1478,7 +2942,11 @@ button {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+
     animation-iteration-count: 1 !important;
+
     transition-duration: 0.01ms !important;
+
+    scroll-behavior: auto !important;
   }
 }
