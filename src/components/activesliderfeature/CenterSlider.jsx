@@ -28,21 +28,12 @@ const slides = [
             "A refined laptop experience built for work, creativity and everyday use.",
     },
     {
-        slider4,
-        image:
-            "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2",
+        image:slider4,
         title: "Next-level performance",
         description:
             "Experience fast, responsive performance wherever you work.",
     },
-    {
-        slider5,
-        image:
-            "https://images.unsplash.com/photo-1593642532400-2682810df593",
-        title: "Designed to impress",
-        description:
-            "Premium design meets intelligent technology in a sleek form factor.",
-    },
+   
 ];
 
 const CenterSlider = () => {
@@ -131,17 +122,7 @@ const CenterSlider = () => {
             </div>
 
             {/* CONTROLS */}
-            <div className="slider-controls">
-
-                <button onClick={prevSlide}>
-                    ←
-                </button>
-
-                <button onClick={nextSlide}>
-                    →
-                </button>
-
-            </div>
+           
 
         </section>
     );
