@@ -46,24 +46,23 @@ const slides = [
     price: "₹1,19,999/-*",
   },
 ];
-
 const accessories = [
   {
     image: laptop1,
-    title: "Dell USB-C Mobile Adapter",
-    price: "₹9,999/-*",
+    title: "Alienware m16 R2 Gaming Laptop",
+    price: "₹1,49,999/-*",
     note: "INCL. ALL TAXES",
   },
   {
     image: laptop2,
-    title: "Dell Pro Wireless Keyboard and Mouse",
-    price: "₹7,999/-*",
+    title: "Dell G16 Gaming Laptop",
+    price: "₹1,29,999/-*",
     note: "INCL. ALL TAXES",
   },
   {
     image: laptop3,
-    title: "Dell Pro Wireless Headset",
-    price: "₹11,999/-*",
+    title: "Dell G15 Gaming Laptop",
+    price: "₹99,999/-*",
     note: "INCL. ALL TAXES",
   },
 ];
