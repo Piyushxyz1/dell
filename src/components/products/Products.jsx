@@ -902,7 +902,7 @@ const Products = () => {
                  amount: 0.4,
                }}
                transition={{
-                 duration: 1,
+                 duration: 1.5,
                  ease: [0.22, 1, 0.36, 1],
                }}
              >
@@ -946,7 +946,7 @@ const Products = () => {
           amount: 0.4,
         }}
         transition={{
-          duration: 1,
+          duration: 1.5,
           ease: [0.22, 1, 0.36, 1],
         }}
       >
