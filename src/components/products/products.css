@@ -2263,6 +2263,7 @@ img {
 
   .alienware-laptop-wrap {
     width: 100%;
+    height: 500px;
 
     max-width: 650px;
   }
@@ -2653,6 +2654,7 @@ img {
 
   .alienware-laptop-wrap {
     width: 100%;
+    height: 400px;
   }
 
   .alienware-laptop-wrap img {
