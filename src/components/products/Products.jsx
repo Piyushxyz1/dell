@@ -288,7 +288,7 @@ const Products = () => {
       if (document.hidden) {
         video.pause();
       } else if (isPlaying) {
-        video.play().catch(() => {});
+        video.play().catch(() => { });
       }
     };
 
@@ -471,7 +471,7 @@ const Products = () => {
 
                       {index <
                         currentSlide.title.split("\n").length -
-                          1 && <br />}
+                        1 && <br />}
                     </span>
                   ))}
               </h1>
@@ -665,7 +665,6 @@ const Products = () => {
             whileInView={{
               opacity: 1,
               x: 0,
-              scale: 1,
             }}
             viewport={{
               once: true,
@@ -673,7 +672,7 @@ const Products = () => {
             }}
             transition={{
               duration: 1.35,
-              delay: 0.05,
+              delay: 0.3,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
@@ -867,17 +866,15 @@ const Products = () => {
           {accessories.map((_, index) => (
             <button
               key={index}
-              className={`accessory-dot ${
-                accessoryIndex === index
+              className={`accessory-dot ${accessoryIndex === index
                   ? "active"
                   : ""
-              }`}
+                }`}
               onClick={() =>
                 goToAccessory(index)
               }
-              aria-label={`Go to slide ${
-                index + 1
-              }`}
+              aria-label={`Go to slide ${index + 1
+                }`}
             />
           ))}
         </div>
