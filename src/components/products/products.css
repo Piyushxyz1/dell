@@ -1139,48 +1139,38 @@ img {
 /* =========================================================
    XPS SECTION
 ========================================================= */
-
 .xps-section {
-  --xps-bg:
-    url(
-      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=2600&q=94"
-    );
+  --xps-bg: url("../../assets/new-dell-headphone.png");
 
   position: relative;
-
   width: 100%;
-
   min-height: 650px;
 
   display: grid;
-
   grid-template-columns:
     minmax(0, 0.9fr)
     minmax(0, 1.1fr);
 
   align-items: center;
-
   padding: 7rem 7%;
-
   overflow: hidden;
-
   isolation: isolate;
 
-  background-color: #050505;
+  background-color: #08090c;
 
   background-image:
     linear-gradient(
       90deg,
-      rgba(3, 3, 3, 0.99) 0%,
-      rgba(3, 3, 3, 0.96) 24%,
-      rgba(3, 3, 3, 0.8) 43%,
-      rgba(3, 3, 3, 0.3) 68%,
-      rgba(3, 3, 3, 0.08) 100%
+      rgba(3, 3, 3, 0.98) 0%,
+      rgba(3, 3, 3, 0.94) 24%,
+      rgba(3, 3, 3, 0.65) 43%,
+      rgba(3, 3, 3, 0.12) 68%,
+      rgba(3, 3, 3, 0.00) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0.5)
+      rgba(0, 0, 0, 0.05),
+      rgba(0, 0, 0, 0.12)
     ),
     var(--xps-bg);
 
@@ -1195,7 +1185,6 @@ img {
     center right;
 
   background-repeat: no-repeat;
-
   background-attachment: scroll;
 }
 
@@ -2876,5 +2865,64 @@ img {
     transition-duration: 0.01ms !important;
 
     scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================
+   PERFORMANCE / SMOOTH MOTION PATCH
+   Keep section reveals transform + opacity only.
+========================================================= */
+
+.hero-slide,
+.special-offer-content,
+.special-offer-image,
+.alienware-center-content,
+.alienware-copy,
+.alienware-secure-badge,
+.xps-section,
+.xps-copy,
+.xps-price-badge {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* The Alienware artwork is preloaded in JSX, so don't let the
+   browser wait for a lazy image request when the section appears. */
+.alienware-laptop-wrap {
+  contain: layout paint;
+}
+
+.alienware-laptop-wrap img {
+  will-change: transform, opacity;
+  transition: none;
+}
+
+/* Avoid large blur layers while scrolling. The radial gradients
+   already provide the same visual depth with much less paint work. */
+.alienware-bg::before {
+  filter: none;
+  opacity: 0.9;
+}
+
+.alienware-image-glow {
+  filter: none;
+  opacity: 0.85;
+}
+
+.alienware-secure-badge {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: rgba(8, 8, 12, 0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

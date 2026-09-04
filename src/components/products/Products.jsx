@@ -99,43 +99,53 @@ const Products = () => {
   const preloadedVideos = useRef(new Set());
 
   /*
-   * Preload all hero videos once when the component mounts.
+   * Only preload the next hero video when the browser is idle.
+   * Loading all three videos at once was competing for bandwidth and
+   * decoding time, which can make scroll/section animations stutter.
    */
   useEffect(() => {
-    const preloaders = [];
+    const preloadVideo = (videoSrc) => {
+      if (!videoSrc || preloadedVideos.current.has(videoSrc)) return;
 
-    slides.forEach((slide) => {
-      const preloadVideo = document.createElement("video");
+      const video = document.createElement("video");
+      video.preload = "metadata";
+      video.muted = true;
+      video.playsInline = true;
+      video.src = videoSrc;
 
-      preloadVideo.preload = "auto";
-      preloadVideo.muted = true;
-      preloadVideo.playsInline = true;
-      preloadVideo.src = slide.video;
-
-      preloadVideo.oncanplaythrough = () => {
-        preloadedVideos.current.add(slide.video);
-
-        if (slide.video === slides[activeSlide]?.video) {
-          setVideoLoaded(true);
-        }
+      const markReady = () => {
+        preloadedVideos.current.add(videoSrc);
+        video.removeEventListener("loadeddata", markReady);
       };
 
-      preloadVideo.onerror = () => {
-        // Do not block the actual hero video if preloading fails.
-      };
+      video.addEventListener("loadeddata", markReady, { once: true });
+      video.load();
+    };
 
-      preloadVideo.load();
-
-      preloaders.push(preloadVideo);
-    });
+    const nextVideo = slides[(activeSlide + 1) % slides.length]?.video;
+    const schedule = window.requestIdleCallback
+      ? window.requestIdleCallback(() => preloadVideo(nextVideo), { timeout: 1200 })
+      : window.setTimeout(() => preloadVideo(nextVideo), 500);
 
     return () => {
-      preloaders.forEach((video) => {
-        video.pause();
-        video.removeAttribute("src");
-        video.load();
-      });
+      if (window.cancelIdleCallback && typeof schedule === "number") {
+        window.cancelIdleCallback(schedule);
+      } else {
+        window.clearTimeout(schedule);
+      }
     };
+  }, [activeSlide]);
+
+  /*
+   * Warm the first below-hero images immediately so they never pop in
+   * after the section becomes visible.
+   */
+  useEffect(() => {
+    [slide5].forEach((src) => {
+      const image = new Image();
+      image.decoding = "async";
+      image.src = src;
+    });
   }, []);
 
   const changeSlide = (nextIndex, nextDirection) => {
@@ -437,7 +447,7 @@ const Products = () => {
                   muted
                   loop
                   playsInline
-                  preload="auto"
+                  preload="metadata"
                   onLoadedData={handleVideoLoaded}
                   onCanPlay={handleVideoLoaded}
                   onError={handleVideoError}
@@ -964,13 +974,13 @@ const Products = () => {
             beautifully engineered machine.
           </p>
 
-          <div className="xps-price">
+          {/* <div className="xps-price">
             <span>Starting from</span>
 
             <strong>
               ₹1,49,999/-*
             </strong>
-          </div>
+          </div> */}
 
           <button className="dark-button">
             EXPLORE XPS
