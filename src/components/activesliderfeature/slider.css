@@ -1,0 +1,491 @@
+/* =========================================================
+   MAIN SECTION
+========================================================= */
+
+.center-slider-section {
+  width: 100%;
+  min-height: 760px;
+
+  background: #0a0a0a;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+
+  padding: 80px 0;
+}
+
+
+/* =========================================================
+   MAIN SLIDER
+========================================================= */
+
+.center-slider {
+  width: 100%;
+  height: 600px;
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   ALL CARDS
+========================================================= */
+
+.slider-card {
+  position: absolute;
+
+  overflow: hidden;
+
+  border-radius: 0;
+
+  cursor: pointer;
+
+  transition:
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    width 1s cubic-bezier(0.22, 1, 0.36, 1),
+    height 1s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.8s ease,
+    filter 0.8s ease,
+    box-shadow 1s ease;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.slider-card img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  border-radius: 0;
+}
+
+
+/* =========================================================
+   IMAGE GRADIENT
+========================================================= */
+
+.slide-gradient {
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(0, 0, 0, 0.35) 35%,
+    rgba(0, 0, 0, 0) 65%
+  );
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   CENTER IMAGE
+========================================================= */
+
+.slider-card.active {
+  width: 70vw;
+  height: 500px;
+
+  left: 50%;
+
+  transform: translateX(-50%) scale(1);
+
+  z-index: 5;
+
+  opacity: 1;
+
+  filter: brightness(1);
+
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.65);
+}
+
+
+/* =========================================================
+   LEFT IMAGE
+========================================================= */
+
+.slider-card.left {
+  width: 450px;
+  height: 500px;
+
+  left: 0;
+
+  transform:
+    translateX(-15%)
+    scale(0.82);
+
+  transform-origin: left center;
+
+  z-index: 2;
+
+  opacity: 0.6;
+
+  filter: brightness(0.55);
+}
+
+
+/* =========================================================
+   RIGHT IMAGE
+========================================================= */
+
+.slider-card.right {
+  width: 450px;
+  height: 500px;
+
+  right: 0;
+
+  transform:
+    translateX(15%)
+    scale(0.82);
+
+  transform-origin: right center;
+
+  z-index: 2;
+
+  opacity: 0.6;
+
+  filter: brightness(0.55);
+}
+
+
+/* =========================================================
+   HIDDEN SLIDES
+========================================================= */
+
+.slider-card.hidden {
+  transform: scale(0.5);
+
+  opacity: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   TEXT CONTENT
+========================================================= */
+
+.slide-content {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 45px 40px 38px;
+
+  color: #fff;
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.slide-content h3 {
+  margin: 0 0 10px;
+
+  font-size: 28px;
+
+  line-height: 1.15;
+
+  font-weight: 600;
+
+  letter-spacing: -0.5px;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.slide-content p {
+  margin: 0;
+
+  max-width: 480px;
+
+  font-size: 17px;
+
+  line-height: 1.5;
+
+  color: rgba(255, 255, 255, 0.88);
+}
+
+
+/* =========================================================
+   SIDE IMAGE TEXT
+========================================================= */
+
+.slider-card.left .slide-content,
+.slider-card.right .slide-content {
+  padding: 28px 25px;
+}
+
+.slider-card.left .slide-content h3,
+.slider-card.right .slide-content h3 {
+  font-size: 19px;
+}
+
+.slider-card.left .slide-content p,
+.slider-card.right .slide-content p {
+  font-size: 13px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   HIDDEN TEXT
+========================================================= */
+
+.slider-card.hidden .slide-content {
+  opacity: 0;
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.slider-controls {
+  display: flex;
+
+  gap: 15px;
+
+  margin-top: 45px;
+}
+
+.slider-controls button {
+  width: 55px;
+  height: 55px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: #fff;
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.slider-controls button:hover {
+  background: #fff;
+
+  color: #000;
+
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .center-slider {
+    height: 560px;
+  }
+
+
+  /* CENTER */
+
+  .slider-card.active {
+    width: 70vw;
+
+    height: 520px;
+  }
+
+
+  /* LEFT */
+
+  .slider-card.left {
+    width: 360px;
+
+    height: 470px;
+
+    left: 0;
+
+    transform:
+      translateX(-18%)
+      scale(0.76);
+  }
+
+
+  /* RIGHT */
+
+  .slider-card.right {
+    width: 360px;
+
+    height: 470px;
+
+    right: 0;
+
+    transform:
+      translateX(18%)
+      scale(0.76);
+  }
+
+
+  /* TEXT */
+
+  .slide-content h3 {
+    font-size: 24px;
+  }
+
+  .slide-content p {
+    font-size: 15px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .center-slider-section {
+    min-height: 560px;
+
+    padding: 50px 0;
+  }
+
+  .center-slider {
+    height: 430px;
+  }
+
+
+  /* CENTER */
+
+  .slider-card.active {
+    width: 88vw;
+
+    height: 400px;
+
+    left: 50%;
+
+    transform:
+      translateX(-50%)
+      scale(1);
+  }
+
+
+  /* LEFT */
+
+  .slider-card.left {
+    width: 300px;
+
+    height: 360px;
+
+    left: 0;
+
+    transform:
+      translateX(-55%)
+      scale(0.55);
+
+    opacity: 0.3;
+  }
+
+
+  /* RIGHT */
+
+  .slider-card.right {
+    width: 300px;
+
+    height: 360px;
+
+    right: 0;
+
+    transform:
+      translateX(55%)
+      scale(0.55);
+
+    opacity: 0.3;
+  }
+
+
+  /* CENTER TEXT */
+
+  .slide-content {
+    padding: 30px 25px 25px;
+  }
+
+  .slide-content h3 {
+    font-size: 22px;
+  }
+
+  .slide-content p {
+    font-size: 14px;
+
+    line-height: 1.4;
+  }
+
+
+  /* SIDE TEXT */
+
+  .slider-card.left .slide-content,
+  .slider-card.right .slide-content {
+    padding: 20px;
+  }
+
+  .slider-card.left .slide-content h3,
+  .slider-card.right .slide-content h3 {
+    font-size: 16px;
+  }
+
+  .slider-card.left .slide-content p,
+  .slider-card.right .slide-content p {
+    font-size: 11px;
+  }
+
+
+  /* CONTROLS */
+
+  .slider-controls {
+    margin-top: 25px;
+  }
+
+  .slider-controls button {
+    width: 48px;
+    height: 48px;
+
+    font-size: 18px;
+  }
+}

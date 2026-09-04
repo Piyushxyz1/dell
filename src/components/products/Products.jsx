@@ -4,118 +4,86 @@ import { AnimatePresence, motion } from "framer-motion";
 import lapvideo from "../../assets/project-lap-4.mp4";
 import lapvideo2 from "../../assets/project-lap.mp4";
 import lapvideo3 from "../../assets/project-lap-3.mp4";
-import lap13 from "../../assets/lap-13.jpg"
-import headphone from "../../assets/headphone.jpg"
-import keyboard from "../../assets/keyboard.jpg"
-import mouse from "../../assets/mouse.jpg"
-import jbl from "../../assets/jbl.jpg"
-import lapp from "../../assets/lap-raichu.jpg"
-import premiumlap from   "../../assets/dell-premium.jpg"
 
+import lap13 from "../../assets/lap-13.jpg";
+import headphone from "../../assets/headphone.jpg";
+import keyboard from "../../assets/keyboard.jpg";
+import mouse from "../../assets/mouse.jpg";
+import jbl from "../../assets/jbl.jpg";
+import lapp from "../../assets/lap-raichu.jpg";
+import premiumlap from "../../assets/dell-premium.jpg";
 
 import {
   ArrowLeft,
   ArrowRight,
-  Menu,
-  Search,
-  ChevronDown,
-  X,
   Play,
   Pause,
-  Headphones,
-  ShoppingBag,
-  Star,
-  TrendingUp,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 
 import "./products.css";
-
-
-/* ================= HERO SLIDES ================= */
+import CenterSlider from "../activesliderfeature/CenterSlider";
 
 const slides = [
   {
     video: lapvideo,
-    poster:
-      "https://cdn.pixabay.com/video/2024/01/17/197386-900817962_preview.jpg",
-    label: "DELL INSPIRON",
-    title: "14 Plus",
-    subtitle: "2-in-1 Laptop",
+    poster: lap13,
+    label: "NEW XPS",
+    title: "Power meets\nprecision.",
     description:
-      "Sleek 14-inch 2-in-1 with on-device Copilot+ powered by Intel® Core™ Ultra processors, with stunning performance that powers the newest AI experiences.",
-    price: "₹56,000",
+      "Engineered for those who demand uncompromising performance and premium design.",
+    price: "₹1,49,999/-*",
   },
-
   {
     video: lapvideo2,
-    poster:
-      "https://cdn.pixabay.com/video/2023/07/18/172561-847587783_preview.jpg",
-    label: "NEW",
-    title: "New AI",
-    subtitle: "experiences",
+    poster: premiumlap,
+    label: "DELL PREMIUM",
+    title: "Built for\nwhat's next.",
     description:
-      "Experience intelligent performance and smarter ways to work with the newest AI experiences.",
-    price: "₹56,000",
+      "Experience next-generation performance wrapped in an elegant, refined design.",
+    price: "₹1,29,999/-*",
   },
-
   {
     video: lapvideo3,
-    poster:
-      "https://cdn.pixabay.com/video/2023/06/27/168978-838580119_preview.jpg",
-    label: "DESIGNED WITH PURPOSE",
-    title: "Built-in",
-    subtitle: "sustainability",
+    poster: lapp,
+    label: "ULTIMATE PERFORMANCE",
+    title: "Create without\nlimits.",
     description:
-      "Thoughtfully designed technology that delivers powerful performance while keeping sustainability in mind.",
-    price: "₹56,000",
+      "Powerful hardware designed to keep up with your biggest ideas.",
+    price: "₹1,19,999/-*",
   },
 ];
 
-
-/* ================= ACCESSORIES ================= */
 const accessories = [
   {
     image: headphone,
-    title: "Dell Wireless Headphones",
-  },
-  {
-    image: premiumlap,
-    title: "Dell Premium laptop",
-  },
-  {
-    image: jbl,
-    title: "jbl speaker",
-  },
-  {
-    image: lapp,
-    title: "Dell Laptop Dock",
-  },
-  {
-    image: mouse,
-    title: "Dell Wireless Mouse",
+    title: "Premium Headphones",
+    price: "₹7,999/-*",
   },
   {
     image: keyboard,
-    title: "Dell Mechanical Keyboard",
+    title: "Wireless Keyboard",
+    price: "₹4,999/-*",
+  },
+  {
+    image: mouse,
+    title: "Precision Mouse",
+    price: "₹2,999/-*",
+  },
+  {
+    image: jbl,
+    title: "JBL Speaker",
+    price: "₹9,999/-*",
   },
 ];
-/*
-  Duplicate the array.
 
-  This gives the carousel enough content
-  to keep moving without ever showing empty space.
-*/
 const extendedAccessories = [
   ...accessories,
   ...accessories,
-  ...accessories,
 ];
 
-
-function Products() {
-
-  /* ================= STATES ================= */
-
+const Products = () => {
   const [accessoryIndex, setAccessoryIndex] = useState(0);
   const [accessoryStep, setAccessoryStep] = useState(0);
 
@@ -128,92 +96,82 @@ function Products() {
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
-
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
 
-
-  /* ================= REFS ================= */
-
   const videoRef = useRef(null);
   const accessoryTrackRef = useRef(null);
-  const isAccessoryResetting = useRef(false);
+  
   const autoSlideInterval = useRef(null);
-
 
   /* ================= HERO SLIDER ================= */
 
   const goNext = () => {
     setDirection(1);
-
-    setActiveSlide((current) =>
-      current === slides.length - 1 ? 0 : current + 1
-    );
+    setActiveSlide((prev) => (prev + 1) % slides.length);
+    setVideoLoaded(false);
+    setVideoError(false);
+    setIsPlaying(true);
   };
-
 
   const goPrevious = () => {
     setDirection(-1);
-
-    setActiveSlide((current) =>
-      current === 0 ? slides.length - 1 : current - 1
+    setActiveSlide(
+      (prev) => (prev - 1 + slides.length) % slides.length
     );
+    setVideoLoaded(false);
+    setVideoError(false);
+    setIsPlaying(true);
   };
-
 
   const goToSlide = (index) => {
     if (index === activeSlide) return;
 
     setDirection(index > activeSlide ? 1 : -1);
-
     setActiveSlide(index);
+    setVideoLoaded(false);
+    setVideoError(false);
+    setIsPlaying(true);
   };
-
 
   /* ================= AUTO SLIDE ================= */
 
-  const startAutoSlide = () => {
-    if (autoSlideInterval.current) {
-      clearInterval(autoSlideInterval.current);
-    }
+  useEffect(() => {
     autoSlideInterval.current = setInterval(() => {
       if (!isPaused) {
         goNext();
       }
     }, 6000);
-  };
 
-  const stopAutoSlide = () => {
-    if (autoSlideInterval.current) {
-      clearInterval(autoSlideInterval.current);
-      autoSlideInterval.current = null;
-    }
-  };
-
+    return () => {
+      if (autoSlideInterval.current) {
+        clearInterval(autoSlideInterval.current);
+      }
+    };
+  }, [isPaused, activeSlide]);
 
   /* ================= VIDEO ================= */
 
-  const playCurrentVideo = async () => {
+  useEffect(() => {
     const video = videoRef.current;
 
     if (!video) return;
 
-    try {
-      video.currentTime = 0;
+    video.currentTime = 0;
 
-      await video.play();
+    const playVideo = async () => {
+      try {
+        await video.play();
+        setIsPlaying(true);
+      } catch {
+        setIsPlaying(false);
+      }
+    };
 
-      setIsPlaying(true);
-      setVideoLoaded(true);
-      setVideoError(false);
-    } catch (error) {
-      console.log("Video playback failed:", error);
-      setIsPlaying(false);
-    }
-  };
+    playVideo();
+  }, [activeSlide]);
 
-
-  const toggleVideo = async () => {
+  const togglePlay = async () => {
     const video = videoRef.current;
 
     if (!video) return;
@@ -222,8 +180,8 @@ function Products() {
       try {
         await video.play();
         setIsPlaying(true);
-      } catch (error) {
-        console.log("Play failed:", error);
+      } catch {
+        setIsPlaying(false);
       }
     } else {
       video.pause();
@@ -231,735 +189,356 @@ function Products() {
     }
   };
 
-
-  /* ================= VIDEO ON SLIDE CHANGE ================= */
-
-  useEffect(() => {
-    setVideoLoaded(false);
+  const handleVideoLoaded = () => {
+    setVideoLoaded(true);
     setVideoError(false);
-    setIsPlaying(true);
-
-    const timer = setTimeout(() => {
-      playCurrentVideo();
-    }, 200);
-
-    return () => clearTimeout(timer);
-  }, [activeSlide]);
-
-
-  /* ================= AUTO SLIDE CONTROL ================= */
-
-  useEffect(() => {
-    startAutoSlide();
-
-    return () => {
-      stopAutoSlide();
-    };
-  }, [activeSlide]);
-
-
-  /* ================= ACCESSORY WIDTH ================= */
-
-  useEffect(() => {
-
-    const calculateAccessoryStep = () => {
-
-      if (!accessoryTrackRef.current) return;
-
-      const firstSlide =
-        accessoryTrackRef.current.querySelector(
-          ".accessory-slide"
-        );
-
-      if (!firstSlide) return;
-
-      const slideWidth =
-        firstSlide.getBoundingClientRect().width;
-
-      const styles =
-        window.getComputedStyle(
-          accessoryTrackRef.current
-        );
-
-      const gap =
-        parseFloat(styles.columnGap || styles.gap) || 0;
-
-      setAccessoryStep(slideWidth + gap);
-    };
-
-
-    calculateAccessoryStep();
-
-    window.addEventListener(
-      "resize",
-      calculateAccessoryStep
-    );
-
-
-    return () => {
-      window.removeEventListener(
-        "resize",
-        calculateAccessoryStep
-      );
-    };
-
-  }, []);
-
-
-  /* ================= ACCESSORIES AUTO SLIDER ================= */
-
-  useEffect(() => {
-
-    if (!accessoryStep) return;
-
-
-    const interval = setInterval(() => {
-
-      setAccessoryIndex((current) => current + 1);
-
-    }, 3000);
-
-
-    return () => {
-      clearInterval(interval);
-    };
-
-  }, [accessoryStep]);
-
-
-  /* ================= ACCESSORIES RESET ================= */
-
-  const handleAccessoryAnimationComplete = () => {
-
-    /*
-      Once the first original set has passed,
-      silently jump back by the exact number
-      of original items.
-
-      User never sees an empty section.
-    */
-
-    if (accessoryIndex >= accessories.length) {
-
-      isAccessoryResetting.current = true;
-
-      setAccessoryIndex(
-        (current) =>
-          current - accessories.length
-      );
-
-
-      requestAnimationFrame(() => {
-
-        requestAnimationFrame(() => {
-
-          isAccessoryResetting.current = false;
-
-        });
-
-      });
-
-    }
   };
 
-
-  /* ================= SCROLL ================= */
-
-  useEffect(() => {
-
-    const handleScroll = () => {
-
-      setScrolled(window.scrollY > 50);
-
-      const sections = [
-        "home",
-        "products",
-        "accessories",
-        "special-offer",
-        "offers",
-      ];
-
-      const scrollPosition =
-        window.scrollY + 150;
-
-
-      for (const section of sections) {
-
-        const element =
-          document.getElementById(section);
-
-        if (!element) continue;
-
-
-        const top = element.offsetTop;
-
-        const bottom =
-          top + element.offsetHeight;
-
-
-        if (
-          scrollPosition >= top &&
-          scrollPosition < bottom
-        ) {
-
-          setActiveSection(section);
-
-          break;
-        }
-      }
-    };
-
-
-    window.addEventListener(
-      "scroll",
-      handleScroll
-    );
-
-
-    return () => {
-      window.removeEventListener(
-        "scroll",
-        handleScroll
-      );
-    };
-
-  }, []);
-
-
-  /* ================= KEYBOARD ================= */
-
-  useEffect(() => {
-
-    const handleKeyboard = (event) => {
-
-      if (event.key === "ArrowRight") {
-        event.preventDefault();
-        stopAutoSlide();
-        goNext();
-        setTimeout(startAutoSlide, 3000);
-      }
-
-      if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        stopAutoSlide();
-        goPrevious();
-        setTimeout(startAutoSlide, 3000);
-      }
-
-      if (event.key === " ") {
-
-        event.preventDefault();
-
-        toggleVideo();
-      }
-    };
-
-
-    window.addEventListener(
-      "keydown",
-      handleKeyboard
-    );
-
-
-    return () => {
-      window.removeEventListener(
-        "keydown",
-        handleKeyboard
-      );
-    };
-
-  }, [activeSlide, isPlaying]);
-
+  const handleVideoError = () => {
+    setVideoError(true);
+    setVideoLoaded(false);
+  };
 
   /* ================= VISIBILITY ================= */
 
   useEffect(() => {
-
     const handleVisibility = () => {
-
-      const video = videoRef.current;
-
-      if (!video) return;
-
-
       if (document.hidden) {
-
-        video.pause();
-
-        setIsPlaying(false);
-
-      } else {
-
-        playCurrentVideo();
-
+        videoRef.current?.pause();
+      } else if (isPlaying) {
+        videoRef.current?.play().catch(() => {});
       }
     };
 
-
-    document.addEventListener(
-      "visibilitychange",
-      handleVisibility
-    );
-
+    document.addEventListener("visibilitychange", handleVisibility);
 
     return () => {
-
       document.removeEventListener(
         "visibilitychange",
         handleVisibility
       );
+    };
+  }, [isPlaying]);
 
+  /* ================= ACCESSORY SLIDER ================= */
+/* ================= ACCESSORY SLIDER ================= */
+
+const updateAccessoryStep = () => {
+  if (!accessoryTrackRef.current) return;
+
+  const firstSlide =
+    accessoryTrackRef.current.querySelector(
+      ".accessory-slide"
+    );
+
+  if (!firstSlide) return;
+
+  const slideWidth =
+    firstSlide.getBoundingClientRect().width;
+
+  const styles = window.getComputedStyle(
+    accessoryTrackRef.current
+  );
+
+  const gap = parseFloat(styles.gap) || 0;
+
+  setAccessoryStep(slideWidth + gap);
+};
+
+useEffect(() => {
+  updateAccessoryStep();
+
+  window.addEventListener(
+    "resize",
+    updateAccessoryStep
+  );
+
+  return () => {
+    window.removeEventListener(
+      "resize",
+      updateAccessoryStep
+    );
+  };
+}, []);
+
+const nextAccessory = () => {
+  setAccessoryIndex((prev) =>
+    Math.min(prev + 1, accessories.length)
+  );
+};
+
+const previousAccessory = () => {
+  setAccessoryIndex((prev) =>
+    Math.max(prev - 1, 0)
+  );
+};
+
+  /* ================= SCROLL ================= */
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
+
+      const sections = [
+        "products",
+        "accessories",
+        "offers",
+      ];
+
+      let current = "home";
+
+      sections.forEach((id) => {
+        const element = document.getElementById(id);
+
+        if (!element) return;
+
+        const rect = element.getBoundingClientRect();
+
+        if (rect.top <= window.innerHeight * 0.35) {
+          current = id;
+        }
+      });
+
+      setActiveSection(current);
     };
 
-  }, [activeSlide]);
+    window.addEventListener("scroll", handleScroll);
 
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  /* ================= KEYBOARD ================= */
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "ArrowRight") {
+        goNext();
+      }
+
+      if (event.key === "ArrowLeft") {
+        goPrevious();
+      }
+
+      if (event.key === " ") {
+        event.preventDefault();
+        togglePlay();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+    };
+  }, []);
+
+  const currentSlide = slides[activeSlide];
 
   return (
-
     <main className="page">
-
-
-     
-
-
 
       {/* ================= HERO ================= */}
 
-      <section
-        className="hero"
-        id="home"
-        onMouseEnter={() =>
-          setIsPaused(true)
-        }
-        onMouseLeave={() =>
-          setIsPaused(false)
-        }
-      >
+      <section className="hero" id="home">
 
         <AnimatePresence
           initial={false}
           custom={direction}
           mode="sync"
         >
-
           <motion.div
             key={activeSlide}
             className="hero-slide"
-            custom={direction}
-
             initial={{
-              x:
-                direction === 1
-                  ? "100%"
-                  : "-100%",
               opacity: 0,
-              scale: 1.02,
+              scale: 1.04,
             }}
-
             animate={{
-              x: 0,
               opacity: 1,
               scale: 1,
             }}
-
             exit={{
-              x:
-                direction === 1
-                  ? "-100%"
-                  : "100%",
               opacity: 0,
-              scale: 1.01,
+              scale: 1.02,
             }}
-
             transition={{
-              duration: 0.9,
-              ease: [0.25, 0.1, 0.25, 1],
+              duration: 1.1,
+              ease: [0.22, 1, 0.36, 1],
             }}
           >
 
-
-            {/* VIDEO */}
-
             <div className="video-wrapper">
 
-              <video
-                key={
-                  slides[activeSlide].video
-                }
-                ref={videoRef}
-                className="hero-video"
-
-                muted
-                autoPlay
-                loop
-                playsInline
-                preload="auto"
-
-                poster={
-                  slides[activeSlide].poster
-                }
-
-                onLoadedData={() => {
-                  setVideoLoaded(true);
-                }}
-
-                onCanPlay={() => {
-                  setVideoLoaded(true);
-                }}
-
-                onError={() => {
-
-                  console.log(
-                    "Video could not be loaded"
-                  );
-
-                  setVideoError(true);
-                  setVideoLoaded(false);
-
-                }}
-              >
-
-                <source
-                  src={
-                    slides[activeSlide].video
-                  }
-                  type="video/mp4"
-                />
-
-                Your browser does not support
-                the video element.
-
-              </video>
-
-
-              {!videoLoaded &&
-                !videoError && (
-                  <div className="video-loader">
-                    <div className="loader-spinner" />
-                  </div>
-                )}
-
-
-              {videoError && (
-                <div className="video-error">
-                  <span>
-                    Video unavailable
-                  </span>
+              {!videoLoaded && !videoError && (
+                <div className="video-loader">
+                  <div className="loader-ring"></div>
                 </div>
+              )}
+
+              {videoError ? (
+                <img
+                  src={currentSlide.poster}
+                  alt={currentSlide.title}
+                  className="hero-video fallback-image"
+                />
+              ) : (
+                <video
+                  ref={videoRef}
+                  className="hero-video"
+                  src={currentSlide.video}
+                  poster={currentSlide.poster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  onLoadedData={handleVideoLoaded}
+                  onError={handleVideoError}
+                />
               )}
 
             </div>
 
-
-
-            {/* OVERLAYS */}
-
-            <div className="hero-dark-gradient" />
-
-            <div className="hero-blue-gradient" />
-
-
-
-            {/* HERO TEXT */}
+            <div className="hero-overlay"></div>
+            <div className="hero-overlay-bottom"></div>
 
             <div className="hero-text">
 
-              <motion.span
-                className="hero-label"
+              <span className="hero-label">
+                {currentSlide.label}
+              </span>
 
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
+              <h1>
+                {currentSlide.title
+                  .split("\n")
+                  .map((line, index) => (
+                    <span key={index}>
+                      {line}
+                      {index <
+                        currentSlide.title.split("\n")
+                          .length -
+                          1 && <br />}
+                    </span>
+                  ))}
+              </h1>
 
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
+              <p>{currentSlide.description}</p>
 
-                transition={{
-                  delay: 0.2,
-                  duration: 0.6,
-                }}
-              >
-                {slides[activeSlide].label}
-              </motion.span>
-
-
-              <motion.h1
-
-                initial={{
-                  opacity: 0,
-                  y: 35,
-                }}
-
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-
-                transition={{
-                  delay: 0.3,
-                  duration: 0.7,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
-              >
-
-                {slides[activeSlide].title}
-
-                <br />
-
-                <span>
-                  {slides[activeSlide].subtitle}
-                </span>
-
-              </motion.h1>
-
-
-              <motion.div
-                className="hero-divider"
-
-                initial={{
-                  width: 0,
-                }}
-
-                animate={{
-                  width: 100,
-                }}
-
-                transition={{
-                  delay: 0.45,
-                  duration: 0.6,
-                }}
-              />
-
-
-              <motion.p
-
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-
-                transition={{
-                  delay: 0.5,
-                  duration: 0.7,
-                }}
-              >
-                {slides[activeSlide].description}
-              </motion.p>
-
-
-              <motion.button
-                className="know-more"
-
-                initial={{
-                  opacity: 0,
-                  y: 15,
-                }}
-
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-
-                transition={{
-                  delay: 0.6,
-                  duration: 0.6,
-                }}
-
-                whileHover={{
-                  scale: 1.03,
-                }}
-
-                whileTap={{
-                  scale: 0.97,
-                }}
-              >
-
+              <button className="know-more">
                 KNOW MORE
-
-                <ArrowRight size={15} />
-
-              </motion.button>
+                <ArrowRight size={16} />
+              </button>
 
             </div>
 
+            {/* PRICE BADGE */}
 
+            <div className="price-badge">
 
-            {/* PRICE */}
+              <span>STARTING FROM</span>
 
-            {slides[activeSlide].price && (
+              <strong>{currentSlide.price}</strong>
 
-              <motion.div
-                className="price-badge"
+              <small>
+                INCL. ALL TAXES
+              </small>
 
-                initial={{
-                  scale: 0.85,
-                  opacity: 0,
-                  y: 15,
-                }}
+            </div>
 
-                animate={{
-                  scale: 1,
-                  opacity: 1,
-                  y: 0,
-                }}
+            {/* VIDEO CONTROL */}
 
-                transition={{
-                  delay: 0.45,
-                  duration: 0.7,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
-              >
-
-                <span className="price-title">Price</span>
-                
-                <span className="price-label">Starting from</span>
-
-                <strong className="price-amount">
-                  {slides[activeSlide].price}
-                </strong>
-
-                <small className="price-asterisk">*</small>
-
-              </motion.div>
-
-            )}
+            <button
+              className="video-control"
+              onClick={togglePlay}
+              aria-label={
+                isPlaying
+                  ? "Pause video"
+                  : "Play video"
+              }
+            >
+              {isPlaying ? (
+                <Pause size={16} />
+              ) : (
+                <Play size={16} />
+              )}
+            </button>
 
           </motion.div>
-
         </AnimatePresence>
-
-
-
-        {/* VIDEO CONTROL - CENTERED */}
-
-        <button
-          className="video-control-btn"
-          onClick={toggleVideo}
-          aria-label={
-            isPlaying
-              ? "Pause video"
-              : "Play video"
-          }
-        >
-
-          {isPlaying ? (
-            <Pause size={28} />
-          ) : (
-            <Play size={28} />
-          )}
-
-        </button>
-
-
 
         {/* HERO CONTROLS */}
 
         <div className="hero-controls">
 
           <button
-            className="slide-arrow"
-            onClick={() => {
-              stopAutoSlide();
-              goPrevious();
-              setTimeout(startAutoSlide, 3000);
-            }}
+            onClick={goPrevious}
             aria-label="Previous slide"
           >
-            <ArrowLeft size={24} />
+            <ArrowLeft size={18} />
           </button>
 
-
-          <div className="slide-numbers">
+          <div className="hero-dots">
 
             {slides.map((_, index) => (
-
               <button
                 key={index}
-
                 className={
                   activeSlide === index
-                    ? "slide-dot active"
-                    : "slide-dot"
+                    ? "active"
+                    : ""
                 }
-
-                onClick={() => {
-                  stopAutoSlide();
-                  goToSlide(index);
-                  setTimeout(startAutoSlide, 3000);
-                }}
-
+                onClick={() =>
+                  goToSlide(index)
+                }
                 aria-label={`Go to slide ${
                   index + 1
                 }`}
               />
-
             ))}
 
           </div>
 
-
           <button
-            className="slide-arrow"
-            onClick={() => {
-              stopAutoSlide();
-              goNext();
-              setTimeout(startAutoSlide, 3000);
-            }}
+            onClick={goNext}
             aria-label="Next slide"
           >
-            <ArrowRight size={24} />
+            <ArrowRight size={18} />
           </button>
 
         </div>
 
-
-
-        {/* SCROLL */}
-
         <div className="scroll-text">
           SCROLL TO EXPLORE
-          <ChevronDown size={15} />
         </div>
 
       </section>
-
-
 
       {/* ================= INTRO ================= */}
 
-      <section className="intro">
+      <section className="intro-section">
 
-        <div className="intro-content">
+        <span className="small-heading">
+          DELL TECHNOLOGIES
+        </span>
 
-          <span className="small-heading">
-            EXPERIENCE MORE
-          </span>
+        <h2>
+          Technology that
+          <span> moves you forward.</span>
+        </h2>
 
-          <h2>
-            Technology
-            <br />
-            <em>that moves.</em>
-          </h2>
-
-          <p>
-            Discover a new generation of Dell
-            devices designed around performance,
-            intelligence and flexibility.
-          </p>
-
-        </div>
+        <p>
+          From everyday productivity to extraordinary
+          performance, discover technology designed
+          around the way you live, work and create.
+        </p>
 
       </section>
-
-
 
       {/* ================= XPS ================= */}
 
@@ -971,303 +550,254 @@ function Products() {
         <div className="xps-copy">
 
           <span className="small-heading">
-            DELL XPS
+            XPS SERIES
           </span>
 
           <h2>
-            XPS
-            <br />
-            <strong>13</strong>
+            Designed to
+            <span> impress.</span>
           </h2>
 
           <p>
-            Meet the sleek and powerful XPS 13.
-            Engineered for performance wherever
-            your day takes you.
+            The new XPS combines powerful performance,
+            breathtaking displays and premium materials
+            into one beautifully engineered machine.
           </p>
 
           <div className="xps-price">
 
-            <span>
-              Starting at
-            </span>
+            <span>Starting from</span>
 
             <strong>
-              ₹53,364
+              ₹1,49,999/-*
             </strong>
-
-            <small>
-              EMI starting at ₹2,224
-            </small>
 
           </div>
 
-          <button className="outline-button">
-
-            KNOW MORE
-
+          <button className="dark-button">
+            EXPLORE XPS
             <ArrowRight size={15} />
-
           </button>
 
         </div>
 
-
         <motion.div
           className="xps-product"
-
           initial={{
             opacity: 0,
-            x: 120,
+            x: 80,
           }}
-
           whileInView={{
             opacity: 1,
             x: 0,
           }}
-
           viewport={{
             once: true,
             amount: 0.3,
           }}
-
           transition={{
             duration: 1,
-            ease: [0.25, 0.1, 0.25, 1],
+            ease: [0.22, 1, 0.36, 1],
           }}
         >
 
           <img
             src={lap13}
-            alt="Dell XPS 13"
+            alt="Dell XPS laptop"
           />
 
         </motion.div>
 
       </section>
 
-
-
       {/* ================= ACCESSORIES ================= */}
 
-     {/* ================= ACCESSORIES ================= */}
-
-<section
-  className="accessories-section"
-  id="accessories"
->
-
-  <div className="section-title">
-
-    <span className="small-heading">
-      COMPLETE YOUR SETUP
-    </span>
-
-    <h2>
-      ACCESSORIES
-    </h2>
-
-  </div>
-
-
-  <div className="accessories-carousel-wrapper">
-
-    <button
-      className="accessory-arrow accessory-arrow-left"
-      onClick={() => {
-        setAccessoryIndex((current) => 
-          current > 0 ? current - 1 : accessories.length * 2 - 1
-        );
-      }}
-      aria-label="Previous accessories"
-    >
-      <ArrowLeft size={24} />
-    </button>
-
-    <div className="accessories-carousel">
-
-      <motion.div
-        ref={accessoryTrackRef}
-        className="accessories-track"
-
-        animate={{
-          x:
-            -(accessoryIndex *
-              accessoryStep),
-        }}
-
-        transition={
-          isAccessoryResetting.current
-            ? {
-                duration: 0,
-              }
-            : {
-                duration: 1.5,
-                ease: [0.25, 0.1, 0.25, 1],
-              }
-        }
-
-        onAnimationComplete={
-          handleAccessoryAnimationComplete
-        }
+      <section
+        className="accessories-section"
+        id="accessories"
       >
 
-        {extendedAccessories.map(
-          (item, index) => (
+        <div className="accessories-header">
 
-            <div
-              className="accessory-slide"
-              key={`${item.title}-${index}`}
+          <div>
+
+            <span className="small-heading">
+              ACCESSORIES
+            </span>
+
+            <h2>
+              Complete your
+              <span> setup.</span>
+            </h2>
+
+          </div>
+
+          <div className="accessory-controls">
+
+            <button
+              onClick={previousAccessory}
+              aria-label="Previous accessories"
+            >
+              <ArrowLeft size={17} />
+            </button>
+
+            <button
+              onClick={nextAccessory}
+              aria-label="Next accessories"
+            >
+              <ArrowRight size={17} />
+            </button>
+
+          </div>
+
+        </div>
+
+        <div className="accessories-carousel-wrapper">
+
+          <div
+            className="accessories-carousel"
+            ref={accessoryTrackRef}
+          >
+
+            <motion.div
+              className="accessories-track"
+              animate={{
+                x: -(accessoryIndex * accessoryStep),
+              }}
+              transition={{
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1],
+              }}
             >
 
-              <img
-                src={item.image}
-                alt={item.title}
-                loading="lazy"
-              />
+              {extendedAccessories.map(
+                (item, index) => (
+                  <div
+                    className="accessory-slide"
+                    key={`${item.title}-${index}`}
+                  >
 
-              <div className="accessory-slide-overlay">
-                <span className="accessory-slide-title">{item.title}</span>
-              </div>
+                    <div className="accessory-image">
 
-            </div>
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                      />
 
-          )
-        )}
+                    </div>
 
-      </motion.div>
+                    <div className="accessory-info">
 
-    </div>
+                      <h3>{item.title}</h3>
 
-    <button
-      className="accessory-arrow accessory-arrow-right"
-      onClick={() => {
-        setAccessoryIndex((current) => current + 1);
-      }}
-      aria-label="Next accessories"
-    >
-      <ArrowRight size={24} />
-    </button>
+                      <strong>
+                        {item.price}
+                      </strong>
 
-  </div>
+                    </div>
 
-</section>
+                  </div>
+                )
+              )}
 
+            </motion.div>
 
+          </div>
+
+        </div>
+
+      </section>
 
       {/* ================= SPECIAL OFFER ================= */}
 
-      <section
-        className="special-offer-section"
-        id="special-offer"
-      >
+      <section className="special-offer-section">
 
-        <motion.div
-          className="special-offer-content"
-          initial={{
-            opacity: 0,
-            y: 60,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.2,
-          }}
-          transition={{
-            duration: 0.9,
-            ease: [0.25, 0.1, 0.25, 1],
-          }}
-        >
+        <div className="special-offer-content">
 
-          <div className="special-offer-badge">
-            <span className="small-heading">SPECIAL OFFER</span>
-            <div className="offer-tag">LIMITED TIME</div>
-          </div>
+          <span className="small-heading">
+            SPECIAL OFFER
+          </span>
 
           <h2>
-            JBL Tune <strong>770NC</strong>
+            Work smarter.
+            <span> Live better.</span>
           </h2>
 
           <p>
-            Premium wireless noise-cancelling headphones with 
-            crystal-clear audio, 70-hour battery life, and 
-            ultra-comfortable design.
+            Upgrade your everyday experience with
+            powerful Dell technology built for modern
+            life.
           </p>
 
-          <div className="special-offer-features">
-            <div className="feature-item">
-              <Headphones size={20} />
-              <span>Wireless ANC</span>
-            </div>
-            <div className="feature-item">
-              <Star size={20} />
-              <span>Premium Sound</span>
-            </div>
-            <div className="feature-item">
-              <TrendingUp size={20} />
-              <span>70hr Battery</span>
-            </div>
-          </div>
-
           <div className="special-offer-price">
+
             <div className="price-row">
-              <span className="original-price">₹9,999/-*</span>
-              <span className="discount-badge">80% OFF</span>
+
+              <del>
+                ₹1,39,999/-*
+              </del>
+
+              <strong>
+                ₹99,999/-*
+              </strong>
+
             </div>
-            <div className="price-row">
-              <span className="offer-price">₹1,999/-*</span>
-            </div>
-            <small>Limited time offer • While stocks last</small>
+
           </div>
 
-          <button className="special-offer-button">
-            <ShoppingBag size={18} />
-            GRAB THIS OFFER
+          <div className="special-offer-badge">
+            LIMITED TIME OFFER
+          </div>
+
+          <div className="special-offer-features">
+
+            <span>✓ Free Delivery</span>
+            <span>✓ 1 Year Warranty</span>
+            <span>✓ Easy EMI</span>
+
+          </div>
+
+          <button className="dark-button">
+            SHOP NOW
             <ArrowRight size={15} />
           </button>
 
-        </motion.div>
+        </div>
 
         <motion.div
           className="special-offer-image"
           initial={{
             opacity: 0,
             x: 80,
-            rotate: 5,
           }}
           whileInView={{
             opacity: 1,
             x: 0,
-            rotate: 0,
           }}
           viewport={{
             once: true,
+            amount: 0.25,
           }}
           transition={{
             duration: 1,
-            ease: [0.25, 0.1, 0.25, 1],
+            ease: [0.22, 1, 0.36, 1],
           }}
         >
 
           <img
-            src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&h=700&fit=crop"
-            alt="JBL Tune 770NC Headphones"
+            src={premiumlap}
+            alt="Dell premium laptop"
           />
-
-          <div className="floating-badge">
-            <span>Save ₹8,000</span>
-          </div>
 
         </motion.div>
 
       </section>
 
+      {/* ================= CENTER SLIDER ================= */}
 
+      <CenterSlider />
 
-      {/* ================= OFFER ================= */}
+      {/* ================= ALIENWARE ================= */}
 
       <section
         className="offer-section"
@@ -1285,9 +815,10 @@ function Products() {
           </h2>
 
           <p>
-            Experience ultimate gaming performance with 
-            Alienware desktops and laptops. Power your passion 
-            with cutting-edge technology.
+            Experience ultimate gaming performance
+            with Alienware desktops and laptops.
+            Power your passion with cutting-edge
+            technology.
           </p>
 
           <div className="offer-price">
@@ -1303,52 +834,43 @@ function Products() {
           </div>
 
           <button className="dark-button">
-
             SHOP NOW
-
             <ArrowRight size={15} />
-
           </button>
 
         </div>
-
 
         <motion.div
           className="headphone-image"
           initial={{
             opacity: 0,
-            x: 120,
-            rotate: 8,
+            x: 80,
           }}
           whileInView={{
             opacity: 1,
             x: 0,
-            rotate: 0,
           }}
           viewport={{
             once: true,
+            amount: 0.25,
           }}
           transition={{
             duration: 1,
-            ease: [0.25, 0.1, 0.25, 1],
+            ease: [0.22, 1, 0.36, 1],
           }}
         >
 
           <img
-            src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=700&h=700&fit=crop"
-            alt="Dell Alienware"
+            src={headphone}
+            alt="Alienware"
           />
 
         </motion.div>
 
       </section>
 
-
-
-
     </main>
   );
-}
-
+};
 
 export default Products;
