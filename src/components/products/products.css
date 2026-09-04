@@ -1642,11 +1642,11 @@ img {
 
   min-width: 100vw;
 
-  height: 75vh;
+  height: 82vh;
 
-  min-height: 550px;
+  min-height: 620px;
 
-  max-height: 750px;
+  max-height: 820px;
 
   display: flex;
 
@@ -1668,7 +1668,7 @@ img {
 
   width: 100%;
 
-  height: 65%;
+  height: 72%;
 
   display: flex;
 
@@ -1691,7 +1691,7 @@ img {
 
   height: 100%;
 
-  max-width: 700px;
+  max-width: 900px;
 
   object-fit: contain;
 
@@ -1731,7 +1731,7 @@ img {
 .accessory-info {
   width: 100%;
 
-  max-width: 700px;
+  max-width: 850px;
 
   padding:
     1.5rem 2rem;
@@ -2091,19 +2091,19 @@ img {
   }
 
   .accessory-slide {
-    height: 70vh;
+    height: 76vh;
 
-    min-height: 500px;
+    min-height: 560px;
   }
 
   .accessory-image {
-    height: 65%;
+    height: 70%;
 
     padding: 1.5rem;
   }
 
   .accessory-image img {
-    max-width: 600px;
+    max-width: 800px;
   }
 
   .custom-slider-btn {
@@ -2465,15 +2465,15 @@ img {
   }
 
   .accessory-slide {
-    height: 70vh;
+    height: 74vh;
 
-    min-height: 450px;
+    min-height: 500px;
 
-    max-height: 600px;
+    max-height: 680px;
   }
 
   .accessory-image {
-    height: 60%;
+    height: 65%;
 
     padding: 1rem;
   }
@@ -2733,15 +2733,15 @@ img {
   /* ACCESSORIES */
 
   .accessory-slide {
-    height: 65vh;
+    height: 70vh;
 
-    min-height: 400px;
+    min-height: 450px;
 
-    max-height: 500px;
+    max-height: 580px;
   }
 
   .accessory-image {
-    height: 55%;
+    height: 60%;
 
     padding: 0.5rem;
   }
