@@ -565,7 +565,7 @@ const Products = () => {
           }}
           viewport={{
             once: true,
-            amount: 0.4,
+            amount: 0.5,
           }}
           transition={{
             duration: 0.9,

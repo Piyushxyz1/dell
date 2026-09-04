@@ -2166,7 +2166,7 @@ img {
 @media (max-width: 768px) {
 
   .hero {
-    min-height: 650px;
+    height: 550px;
   }
 
   .hero-text {
@@ -2590,7 +2590,7 @@ img {
 @media (max-width: 480px) {
 
   .hero {
-    min-height: 600px;
+    height: 500px;
   }
 
   .hero-text {
