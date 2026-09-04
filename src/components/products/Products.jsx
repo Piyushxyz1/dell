@@ -565,7 +565,7 @@ const Products = () => {
           }}
           viewport={{
             once: true,
-            amount: 0.2,
+            amount: 0.4,
           }}
           transition={{
             duration: 0.9,
@@ -627,7 +627,7 @@ const Products = () => {
           }}
           viewport={{
             once: true,
-            amount: 0.2,
+            amount: 0.4,
           }}
           transition={{
             duration: 1,
@@ -668,11 +668,11 @@ const Products = () => {
             }}
             viewport={{
               once: true,
-              amount: 0.25,
+              amount: 0.4,
             }}
             transition={{
               duration: 1.35,
-              delay: 0.3,
+              delay: 0.6,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
@@ -726,7 +726,7 @@ const Products = () => {
             }}
             viewport={{
               once: true,
-              amount: 0.25,
+              amount: 0.4,
             }}
             transition={{
               duration: 1,
@@ -882,31 +882,49 @@ const Products = () => {
 
       {/* ================= INTRO ================= */}
 
-      <section className="intro-section">
-        <div className="intro-background" />
-        <div className="intro-overlay" />
-        <div className="intro-overlay-bottom" />
-
-        <div className="intro-content">
-          <span className="small-heading">
-            DELL TECHNOLOGIES
-          </span>
-
-          <h2>
-            Technology that
-            <span>
-              {" "}moves you forward.
-            </span>
-          </h2>
-
-          <p>
-            From everyday productivity to
-            extraordinary performance, discover
-            technology designed around the way
-            you live, work and create.
-          </p>
-        </div>
-      </section>
+        <section className="intro-section">
+             <div className="intro-background" />
+             <div className="intro-overlay" />
+             <div className="intro-overlay-bottom" />
+     
+             <motion.div
+               className="intro-content"
+               initial={{
+                 opacity: 0,
+                 y: 55,
+               }}
+               whileInView={{
+                 opacity: 1,
+                 y: 0,
+               }}
+               viewport={{
+                 once: true,
+                 amount: 0.4,
+               }}
+               transition={{
+                 duration: 1,
+                 ease: [0.22, 1, 0.36, 1],
+               }}
+             >
+               <span className="small-heading">
+                 DELL TECHNOLOGIES
+               </span>
+     
+               <h2>
+                 Technology that
+                 <span>
+                   {" "}moves you forward.
+                 </span>
+               </h2>
+     
+               <p>
+                 From everyday productivity to
+                 extraordinary performance, discover
+                 technology designed around the way
+                 you live, work and create.
+               </p>
+             </motion.div>
+           </section>
 
       <div className="white-section" />
 
@@ -925,7 +943,7 @@ const Products = () => {
         }}
         viewport={{
           once: true,
-          amount: 0.18,
+          amount: 0.4,
         }}
         transition={{
           duration: 1,
@@ -946,7 +964,7 @@ const Products = () => {
           }}
           viewport={{
             once: true,
-            amount: 0.25,
+            amount: 0.4,
           }}
           transition={{
             duration: 0.9,
@@ -996,7 +1014,7 @@ const Products = () => {
           }}
           viewport={{
             once: true,
-            amount: 0.25,
+            amount: 0.4,
           }}
           transition={{
             duration: 0.8,
