@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-
 import lapvideo from "../../assets/project-lap-4.mp4";
-import lapvideo2 from "../../assets/project-lap.mp4";
+import lapvideo2 from "../../assets/project-lap-2.mp4";
 import lapvideo3 from "../../assets/project-lap-3.mp4";
 import laptop1 from "../../assets/laptop-1.avif";
 import laptop2 from "../../assets/laptop-2.avif";
