@@ -67,16 +67,26 @@ npm run build
 ```
 
 ## Project Structure
-
-```text
 src/
 ├── assets/
+│   ├── images/
+│   └── videos/
+│
 ├── components/
 │   ├── products/
-│   └── activesliderfeature/
+│   │   ├── ProductCard.jsx
+│   │   └── ProductCard.css
+│   │
+│   ├── HeroSection.jsx
+│   ├── DellTechnology.jsx
+│   ├── Accessories.jsx
+│   ├── Laptop.jsx
+│   └── Headphone.jsx
+│
 ├── App.jsx
-└── main.jsx
-```
+├── main.jsx
+└── index.css
+
 
 ## Note
 
