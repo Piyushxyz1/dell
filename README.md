@@ -1,11 +1,8 @@
 # Dell Tech
 
-## Overview
-This project is a  frontend implementation focused on creating a premium digital experience for Dell Technologies products.
+A frontend project built with React and Vite.
 
-The main focus was to build a premium, modern product experience with a dark visual style, smooth animations, responsive layouts, and interactive product sections.
-
-Along with implementing the required functionality, I also added my own design approach to make the interface feel more polished and closer to a real-world product website.
+The project focuses on a clean product-focused interface with video backgrounds, animated sections, product showcases and responsive layouts. I also made my own changes to the visual design, spacing, transitions and interactions instead of keeping the implementation limited to the initial requirements.
 
 ## Tech Stack
 
@@ -16,61 +13,43 @@ Along with implementing the required functionality, I also added my own design a
 * Framer Motion
 * Lucide React
 
-## Key Sections
+## Highlights
 
-* Full-screen hero section with video backgrounds
+* Full-screen hero section with video background
 * Animated hero slider
-* Product pricing and call-to-action sections
+* Product pricing and CTA sections
 * Special offer section
 * Alienware product showcase
 * Accessories carousel
 * XPS product section
-* Responsive layouts for desktop, tablet and mobile
-* Smooth scroll and entrance animations
-
-## Design
-
-The provided requirements were used as the base for the implementation, while the visual design, spacing, animations, transitions and overall presentation were customized by me.
-
-The goal was to keep the interface clean and premium rather than making it look like a basic assignment/demo website.
+* Responsive layout for different screen sizes
+* Smooth section and content animations
+* Interactive hover effects
 
 ## Features
 
 * Responsive design
+* Hero slider with next/previous navigation
+* Video autoplay and play/pause controls
+* Keyboard navigation for the hero slider
+* Accessories slider
 * Animated content transitions
-* Video autoplay with play/pause controls
-* Hero slider navigation
-* Accessories slider navigation
-* Keyboard controls for the hero slider
 * Lazy loading for supporting images
 * Mobile-friendly layout
-* Smooth hover and interaction effects
+* Smooth scrolling
+* Hover and interaction effects
 
-## Running the Project
+## Design Approach
 
-Install the dependencies:
+I used the given requirements as the starting point and built the interface around a dark, modern product presentation.
 
-```bash
-npm install
-```
-
-Start the development server:
-
-```bash
-npm run dev
-```
-
-Create a production build:
-
-```bash
-npm run build
-```
+The layout, spacing, animations, transitions and some of the visual elements were customized to give the website a more complete product-site feel rather than keeping it as a basic static implementation.
 
 ## Project Structure
+
+```text
 src/
 ├── assets/
-│   ├── images/
-│   └── videos/
 │
 ├── components/
 │   ├── products/
@@ -86,10 +65,30 @@ src/
 ├── App.jsx
 ├── main.jsx
 └── index.css
+```
 
+## Getting Started
 
-## Note
+Clone the repository and install the dependencies:
 
-This implementation is focused on the frontend experience. Product imagery and content are used for demonstration of the design and interface.
+```bash
+npm install
+```
 
-The final UI includes both the requested assignment requirements and my own design decisions to improve the overall user experience.
+Start the development server:
+
+```bash
+npm run dev
+```
+
+For a production build:
+
+```bash
+npm run build
+```
+
+## Notes
+
+This is a frontend-focused project. Product images, videos and content are used to demonstrate the interface and interactions.
+
+The implementation includes the required sections along with additional design and animation choices made during development.
