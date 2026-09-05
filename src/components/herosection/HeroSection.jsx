@@ -52,18 +52,9 @@ const HeroSection = () => {
 
   const videoRef = useRef(null);
   const autoSlideInterval = useRef(null);
-
-  /*
-   * Keeps track of videos that have already been preloaded.
-   * This prevents the loader from appearing every time
-   * the user moves between already-loaded hero slides.
-   */
   const preloadedVideos = useRef(new Set());
 
-  /*
-   * Preload the next hero video when the browser is idle.
-   * This avoids loading all videos at the same time.
-   */
+ 
   useEffect(() => {
     const preloadVideo = (videoSrc) => {
       if (
@@ -122,9 +113,7 @@ const HeroSection = () => {
     };
   }, [activeSlide]);
 
-  /*
-   * Change hero slide.
-   */
+
   const changeSlide = (
     nextIndex,
     nextDirection
@@ -135,10 +124,6 @@ const HeroSection = () => {
     setVideoError(false);
     setIsPlaying(true);
 
-    /*
-     * If the video has already been preloaded,
-     * don't show the loader again.
-     */
     if (
       preloadedVideos.current.has(
         slides[nextIndex].video
@@ -150,9 +135,7 @@ const HeroSection = () => {
     }
   };
 
-  /*
-   * Next slide.
-   */
+
   const goNext = () => {
     const nextIndex =
       (activeSlide + 1) % slides.length;
@@ -160,9 +143,7 @@ const HeroSection = () => {
     changeSlide(nextIndex, 1);
   };
 
-  /*
-   * Previous slide.
-   */
+
   const goPrevious = () => {
     const nextIndex =
       (activeSlide - 1 + slides.length) %
@@ -171,9 +152,7 @@ const HeroSection = () => {
     changeSlide(nextIndex, -1);
   };
 
-  /*
-   * Go directly to a slide.
-   */
+
   const goToSlide = (index) => {
     if (index === activeSlide) return;
 
@@ -183,9 +162,7 @@ const HeroSection = () => {
     changeSlide(index, nextDirection);
   };
 
-  /*
-   * Automatic hero slider.
-   */
+
   useEffect(() => {
     autoSlideInterval.current =
       setInterval(() => {
@@ -222,9 +199,7 @@ const HeroSection = () => {
     };
   }, [isPaused]);
 
-  /*
-   * Play the newly active video.
-   */
+  
   useEffect(() => {
     const video = videoRef.current;
 
@@ -242,10 +217,7 @@ const HeroSection = () => {
       }
     };
 
-    /*
-     * Give the browser a moment to attach
-     * the new video source.
-     */
+ 
     const timer = setTimeout(() => {
       playVideo();
     }, 50);
@@ -253,9 +225,7 @@ const HeroSection = () => {
     return () => clearTimeout(timer);
   }, [activeSlide]);
 
-  /*
-   * Play / pause video.
-   */
+
   const togglePlay = async () => {
     const video = videoRef.current;
 
@@ -278,9 +248,6 @@ const HeroSection = () => {
     }
   };
 
-  /*
-   * Video loaded successfully.
-   */
   const handleVideoLoaded = () => {
     const currentVideo =
       slides[activeSlide]?.video;
@@ -293,18 +260,13 @@ const HeroSection = () => {
     setVideoError(false);
   };
 
-  /*
-   * Video loading error.
-   */
+  
   const handleVideoError = () => {
     setVideoError(true);
     setVideoLoaded(false);
   };
 
-  /*
-   * Pause hero video when browser tab
-   * becomes hidden.
-   */
+ 
   useEffect(() => {
     const handleVisibility = () => {
       const video = videoRef.current;
