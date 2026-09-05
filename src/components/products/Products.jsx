@@ -7,7 +7,7 @@ import CenterSlider from "../activesliderfeature/CenterSlider";
 import HeroSection from "../herosection/HeroSection";
 import OfferSection from "../offersection/OfferSection";
 import Alienware from "../alienware/Alienware";
-import Accessories from "../accessories/Accesories.Jsx";
+import Accessories from "../accessories/Accessories";
 import IntroSection from "../introsection/IntroSection";
 import XpsSection from "../xpssection/XpsSection";
 
