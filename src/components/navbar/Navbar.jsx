@@ -12,46 +12,46 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="nav-container">
 
-        {/* ================= LOGO ================= */}
+        {/* LOGO */}
         <div className="nav-logo">
           DELL<span>TECHNOLOGIES</span>
         </div>
 
-        {/* ================= DESKTOP LINKS ================= */}
+        {/* DESKTOP LINKS */}
         <div className="nav-links">
           <a href="#products">Products</a>
           <a href="#accessories">Accessories</a>
           <a href="#offers">Offers</a>
         </div>
 
-        {/* ================= ACTIONS ================= */}
+        {/* ACTIONS */}
         <div className="nav-actions">
 
           {/* CIRCULAR TRUST LOGO */}
-<button className="nav-circle-logo" aria-label="20 Years of Trust">
-  <svg
-    className="trust-ring"
-    viewBox="0 0 100 100"
-  >
-    <defs>
-      <path
-        id="trustCirclePath"
-        d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0"
-      />
-    </defs>
+          <button className="nav-circle-logo" aria-label="20 Years of Trust">
+            <svg
+              className="trust-ring"
+              viewBox="0 0 100 100"
+            >
+              <defs>
+                <path
+                  id="trustCirclePath"
+                  d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0"
+                />
+              </defs>
 
-    <text className="trust-text">
-      <textPath
-        href="#trustCirclePath"
-        startOffset="0%"
-      >
-        20 YEARS OF TRUST • EXCELLENCE • INNOVATION •
-      </textPath>
-    </text>
-  </svg>
+              <text className="trust-text">
+                <textPath
+                  href="#trustCirclePath"
+                  startOffset="0%"
+                >
+                  20 YEARS OF TRUST • EXCELLENCE • INNOVATION •
+                </textPath>
+              </text>
+            </svg>
 
-  <span className="trust-d">D</span>
-</button>
+            <span className="trust-d">D</span>
+          </button>
 
           {/* MENU BUTTON */}
           <button
@@ -65,7 +65,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* ================= MOBILE MENU ================= */}
+      {/* MOBILE MENU */}
       {menuOpen && (
         <div className="mobile-menu">
 

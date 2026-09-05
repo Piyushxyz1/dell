@@ -16,20 +16,12 @@ import {
   Pause,
 } from "lucide-react";
 
-import lapvideo from "../../assets/project-lap-4.mp4";
 import lapvideo2 from "../../assets/project-lap.mp4";
 import lapvideo3 from "../../assets/project-lap-3.mp4";
 
 
 const slides = [
-  {
-    video: lapvideo,
-    label: "NEW XPS",
-    title: "Power meets\nprecision.",
-    description:
-      "Engineered for those who demand uncompromising performance and premium design.",
-    price: "₹1,49,999/-*",
-  },
+ 
   {
     video: lapvideo2,
     label: "DELL PREMIUM",
